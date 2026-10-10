@@ -3,21 +3,22 @@ import "./TrackRecordPage.css";
 // Hooks
 import { useSiteContent, useTrackRecordContent } from "@/hooks";
 // Components
-import { PageHero, SEO, Section, CaseStudyCard, CtaBand } from "@/components";
+import { CaseStudyCard, CtaBand, PageHero, SEO, Section } from "@/components";
 // Utils
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function TrackRecordPage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const { caseStudies, trackRecordNote, ctaBand } = useTrackRecordContent();
 
   return (
     <>
       <SEO
-        title={`Track record | ${site.name}`}
+        {...seoBase}
+        title="Track record"
         description="Selected engagements delivered by Barito Bahalap Tech: RSO2 Telkom Dashboard, E-Palugada and the AMPI Kalteng official website."
         path="/track-record"
-        jsonLd={breadcrumbSchema(site, [
+        structuredData={breadcrumbSchema(site, [
           { name: "Home", path: "/" },
           { name: "Track record", path: "/track-record" },
         ])}

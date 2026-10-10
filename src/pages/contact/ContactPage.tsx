@@ -1,27 +1,45 @@
 // Style
 import "./ContactPage.css";
 // Hooks
-import { useContactContent, useSiteContent, useContactForm } from "@/hooks";
+import { useContactContent, useContactForm, useSiteContent } from "@/hooks";
 // Components
-import { Button, Checkbox, Checklist, Field, Input } from "@/components";
-import { PageHero, SEO, Section, Select, Textarea } from "@/components";
+import {
+  Button,
+  Checkbox,
+  Checklist,
+  Input,
+  PageHero,
+  SEO,
+  Section,
+  Select,
+  Textarea,
+} from "@/components";
 // Utils
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function ContactPage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const { contactIntro, inquiryTypes, includeList, consentText } =
     useContactContent();
-  const { values, errors, prepared, handleChange, handleSubmit } =
-    useContactForm(site.email, inquiryTypes);
+  const {
+    values,
+    errors,
+    prepared,
+    handleChange,
+    handleConsent,
+    handleSubmit,
+  } = useContactForm(site.email, inquiryTypes);
+
+  const inquiryOptions = [{ value: "", label: "Select" }, ...inquiryTypes];
 
   return (
     <>
       <SEO
-        title={`Contact | ${site.name}`}
+        {...seoBase}
+        title="Contact"
         description="Request a consultation with Barito Bahalap Tech about an enterprise system, dashboard, automation or support requirement."
         path="/contact"
-        jsonLd={breadcrumbSchema(site, [
+        structuredData={breadcrumbSchema(site, [
           { name: "Home", path: "/" },
           { name: "Contact", path: "/contact" },
         ])}
@@ -46,85 +64,75 @@ export default function ContactPage() {
 
           <form className="form-grid" onSubmit={handleSubmit} noValidate>
             <div className="form-grid__row">
-              <Field label="Name" htmlFor="name" error={errors.name}>
-                <Input
-                  id="name"
-                  name="name"
-                  autoComplete="name"
-                  value={values.name}
-                  onChange={handleChange}
-                />
-              </Field>
-              <Field
-                label="Organization"
-                htmlFor="organization"
-                error={errors.organization}
-              >
-                <Input
-                  id="organization"
-                  name="organization"
-                  autoComplete="organization"
-                  value={values.organization}
-                  onChange={handleChange}
-                />
-              </Field>
-            </div>
-            <div className="form-grid__row">
-              <Field label="Role" htmlFor="role" error={errors.role}>
-                <Input
-                  id="role"
-                  name="role"
-                  autoComplete="organization-title"
-                  value={values.role}
-                  onChange={handleChange}
-                />
-              </Field>
-              <Field label="Email" htmlFor="email" error={errors.email}>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-              </Field>
-            </div>
-            <Field
-              label="Inquiry type"
-              htmlFor="inquiryType"
-              error={errors.inquiryType}
-            >
-              <Select
-                id="inquiryType"
-                name="inquiryType"
-                value={values.inquiryType}
-                onChange={handleChange}
-              >
-                <option value="">Select</option>
-                {inquiryTypes.map((type) => (
-                  <option key={type.value} value={type.value}>
-                    {type.label}
-                  </option>
-                ))}
-              </Select>
-            </Field>
-            <Field label="Requirement" htmlFor="message" error={errors.message}>
-              <Textarea
-                id="message"
-                name="message"
-                rows={6}
-                value={values.message}
+              <Input
+                id="name"
+                name="name"
+                label="Name"
+                autoComplete="name"
+                required
+                value={values.name}
+                error={errors.name}
                 onChange={handleChange}
               />
-            </Field>
+              <Input
+                id="organization"
+                name="organization"
+                label="Organization"
+                autoComplete="organization"
+                required
+                value={values.organization}
+                error={errors.organization}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-grid__row">
+              <Input
+                id="role"
+                name="role"
+                label="Role"
+                autoComplete="organization-title"
+                value={values.role}
+                error={errors.role}
+                onChange={handleChange}
+              />
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                autoComplete="email"
+                required
+                value={values.email}
+                error={errors.email}
+                onChange={handleChange}
+              />
+            </div>
+            <Select
+              id="inquiryType"
+              name="inquiryType"
+              label="Inquiry type"
+              required
+              options={inquiryOptions}
+              value={values.inquiryType}
+              error={errors.inquiryType}
+              onChange={handleChange}
+            />
+            <Textarea
+              id="message"
+              name="message"
+              label="Requirement"
+              rows={6}
+              required
+              value={values.message}
+              error={errors.message}
+              onChange={handleChange}
+            />
             <Checkbox
               id="consent"
-              name="consent"
               label={consentText}
               checked={values.consent}
-              onChange={handleChange}
               error={errors.consent}
+              onChange={handleConsent}
             />
             <div>
               <Button type="submit" variant="primary" brand="tech">

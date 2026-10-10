@@ -5,21 +5,24 @@ import { useCareersContent, useSiteContent } from "@/hooks";
 // Components
 import { Button, Checklist, PageHero } from "@/components";
 import { SEO, Section, SectionHeader } from "@/components";
+// Data
+import { SECTION_ALT_TONE } from "@/data/layout";
 // Utils
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function CareersPage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const { careersIntro, workingModel, roleAreas, interestNote } =
     useCareersContent();
 
   return (
     <>
       <SEO
-        title={`Careers | ${site.name}`}
+        {...seoBase}
+        title="Careers"
         description="Working at Barito Bahalap Tech: how the team works and the areas in which it grows."
         path="/careers"
-        jsonLd={breadcrumbSchema(site, [
+        structuredData={breadcrumbSchema(site, [
           { name: "Home", path: "/" },
           { name: "Careers", path: "/careers" },
         ])}
@@ -38,7 +41,7 @@ export default function CareersPage() {
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section tone={SECTION_ALT_TONE}>
         <div className="grid-split">
           <SectionHeader eyebrow="Areas" title="Where the team grows." />
           <div className="stack">

@@ -3,23 +3,26 @@ import "./SecurityPage.css";
 // Hooks
 import { useSecurityContent, useSiteContent } from "@/hooks";
 // Components
-import { Accordion, DataTable, InfoCard, PageHero } from "@/components";
-import { CtaBand, SEO, Section, SectionHeader } from "@/components";
+import { Accordion, DataTableVariant, InfoCard, PageHero } from "@/components";
+import { SEO, Section, SectionHeader, CtaBand } from "@/components";
+// Data
+import { SECTION_ALT_TONE } from "@/data/layout";
 // Utils
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function SecurityPage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const { securityIntro, principles, compliance, faq, ctaBand } =
     useSecurityContent();
 
   return (
     <>
       <SEO
-        title={`Security and data governance | ${site.name}`}
+        {...seoBase}
+        title="Security and data governance"
         description="How Barito Bahalap Tech handles confidentiality, data isolation, access control and personal data protection under Law No. 27 of 2022."
         path="/security"
-        jsonLd={breadcrumbSchema(site, [
+        structuredData={breadcrumbSchema(site, [
           { name: "Home", path: "/" },
           { name: "Security", path: "/security" },
         ])}
@@ -43,12 +46,12 @@ export default function SecurityPage() {
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section tone={SECTION_ALT_TONE}>
         <SectionHeader
           eyebrow="Compliance position"
           title="What we state, and what we do not claim."
         />
-        <DataTable
+        <DataTableVariant
           caption="Compliance position"
           columns={compliance.columns}
           rows={compliance.rows}

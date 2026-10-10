@@ -26,7 +26,8 @@ import { footerGroups, headerCta, mainNav, site } from "@/data/site";
 import { contracting, retainerTable, stages } from "@/data/approach";
 
 export function useSiteContent() {
-  return { site, mainNav, headerCta, footerGroups };
+  const seoBase = { siteName: site.name, siteUrl: site.url };
+  return { site, mainNav, headerCta, footerGroups, seoBase };
 }
 
 export function useHomeContent() {

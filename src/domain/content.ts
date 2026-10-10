@@ -64,14 +64,17 @@ export interface FaqItem {
 }
 
 export interface LegalSection {
+  id: string;
   heading: string;
-  paragraphs: string[];
+  paragraphs?: string[];
+  items?: string[];
 }
 
 export interface LegalPageContent {
   title: string;
   description: string;
   updated: string;
+  intro?: string;
   sections: LegalSection[];
 }
 

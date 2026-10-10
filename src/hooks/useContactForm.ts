@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
+// Utils
 import type {
   ContactErrors,
   ContactValues,
@@ -64,14 +65,15 @@ export function useContactForm(recipient: string, inquiryTypes: InquiryType[]) {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) {
-    const { name, value, type } = event.target;
-    const checked =
-      event.target instanceof HTMLInputElement ? event.target.checked : false;
-    setValues((current) => ({
-      ...current,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    const { name, value } = event.target;
+    setValues((current) => ({ ...current, [name]: value }));
     setErrors((current) => ({ ...current, [name]: undefined }));
+    setPrepared(false);
+  }
+
+  function handleConsent(checked: boolean) {
+    setValues((current) => ({ ...current, consent: checked }));
+    setErrors((current) => ({ ...current, consent: undefined }));
     setPrepared(false);
   }
 
@@ -84,5 +86,12 @@ export function useContactForm(recipient: string, inquiryTypes: InquiryType[]) {
     setPrepared(true);
   }
 
-  return { values, errors, prepared, handleChange, handleSubmit };
+  return {
+    values,
+    errors,
+    prepared,
+    handleChange,
+    handleConsent,
+    handleSubmit,
+  };
 }

@@ -3,22 +3,25 @@ import "./ServicesPage.css";
 // Hooks
 import { useServicesContent, useSiteContent } from "@/hooks";
 // Components
-import { Checklist, DataTable, PageHero } from "@/components";
-import { CtaBand, SEO, Section, SectionHeader } from "@/components";
+import { Checklist, DataTableVariant, PageHero } from "@/components";
+import { SEO, Section, SectionHeader, CtaBand } from "@/components";
+// Data
+import { SECTION_ALT_TONE } from "@/data/layout";
 // Utils
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function ServicesPage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const { services, technologyCategories, ctaBand } = useServicesContent();
 
   return (
     <>
       <SEO
-        title={`Services | ${site.name}`}
+        {...seoBase}
+        title="Services"
         description="Enterprise systems, operational dashboards, business automation, custom software, system integration and long-term technical support from Barito Bahalap Tech."
         path="/services"
-        jsonLd={breadcrumbSchema(site, [
+        structuredData={breadcrumbSchema(site, [
           { name: "Home", path: "/" },
           { name: "Services", path: "/services" },
         ])}
@@ -33,14 +36,10 @@ export default function ServicesPage() {
       {services.map((service, index) => (
         <Section
           key={service.id}
-          id={service.id}
-          tone={index % 2 === 1 ? "muted" : undefined}
+          tone={index % 2 === 1 ? SECTION_ALT_TONE : undefined}
         >
           <div className="grid-split">
-            <SectionHeader
-              title={service.title}
-              description={service.summary}
-            />
+            <SectionHeader title={service.title} intro={service.summary} />
             <Checklist items={service.scope} />
           </div>
         </Section>
@@ -50,9 +49,9 @@ export default function ServicesPage() {
         <SectionHeader
           eyebrow="Technology"
           title="Technology categories."
-          description="Specific technologies are selected per engagement, taking the client's environment, policies and support model into account."
+          intro="Specific technologies are selected per engagement, taking the client's environment, policies and support model into account."
         />
-        <DataTable
+        <DataTableVariant
           caption="Technology categories"
           columns={["Category", "Approach"]}
           rows={technologyCategories.map((item) => [

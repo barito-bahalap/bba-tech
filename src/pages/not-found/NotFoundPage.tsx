@@ -6,19 +6,20 @@ import { useSiteContent } from "@/hooks";
 import { Button, EmptyState, SEO } from "@/components";
 
 export default function NotFoundPage() {
-  const { site } = useSiteContent();
+  const { seoBase } = useSiteContent();
 
   return (
     <>
       <SEO
-        title={`Page not found | ${site.name}`}
+        {...seoBase}
+        title="Page not found"
         description="The requested page could not be found."
         path="/404"
-        noindex
+        noIndex
       />
       <EmptyState
         title="Page not found"
-        description="The address may be incorrect or the page may have moved."
+        sub="The address may be incorrect or the page may have moved."
         action={
           <Button href="/" variant="primary" brand="tech">
             Return home

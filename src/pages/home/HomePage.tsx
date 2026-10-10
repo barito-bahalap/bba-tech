@@ -3,13 +3,15 @@ import "./HomePage.css";
 // Hooks
 import { useHomeContent, useSiteContent } from "@/hooks";
 // Components
-import { Button, Checklist, SEO, Section, SectionHeader } from "@/components";
-import { CaseStudyCard, CtaBand, PageHero, InfoCard } from "@/components";
+import { Button, CaseStudyCard, Checklist, CtaBand } from "@/components";
+import { InfoCard, PageHero, SEO, Section, SectionHeader } from "@/components";
+// Data
+import { SECTION_ALT_TONE } from "@/data/layout";
 // Utils
-import { organizationSchema, websiteSchema } from "@/domain/schema";
+import { homeSchema } from "@/domain/schema";
 
 export default function HomePage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const {
     hero,
     homeIntro,
@@ -23,10 +25,11 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        title={`${site.name} | ${site.tagline}`}
+        {...seoBase}
+        title={site.tagline}
         description={site.description}
         path="/"
-        jsonLd={[organizationSchema(site), websiteSchema(site)]}
+        structuredData={homeSchema(site)}
       />
 
       <PageHero
@@ -63,7 +66,7 @@ export default function HomePage() {
         <SectionHeader
           eyebrow={homeIntro.eyebrow}
           title={homeIntro.title}
-          description={homeIntro.description}
+          intro={homeIntro.description}
         />
         <div className="grid-cards grid-cards--3">
           {featuredServices.map((service) => (
@@ -81,11 +84,11 @@ export default function HomePage() {
         </p>
       </Section>
 
-      <Section tone="muted">
+      <Section tone={SECTION_ALT_TONE}>
         <SectionHeader
           eyebrow="Track record"
           title="Systems in operation under continuing support."
-          description="Three engagements BBT is able to describe publicly."
+          intro="Three engagements BBT is able to describe publicly."
         />
         <div className="grid-cards grid-cards--3">
           {caseStudies.map((study) => (
@@ -104,7 +107,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow={homeEngagement.eyebrow}
             title={homeEngagement.title}
-            description={homeEngagement.description}
+            intro={homeEngagement.description}
           />
           <div className="stack">
             <Checklist items={homeEngagement.points} />
@@ -117,12 +120,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section tone={SECTION_ALT_TONE}>
         <div className="grid-split">
           <SectionHeader
             eyebrow={homeGovernance.eyebrow}
             title={homeGovernance.title}
-            description={homeGovernance.description}
+            intro={homeGovernance.description}
           />
           <p>
             <Button href="/security" variant="outline" brand="tech">

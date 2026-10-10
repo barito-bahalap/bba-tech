@@ -3,23 +3,26 @@ import "./ApproachPage.css";
 // Hooks
 import { useApproachContent, useSiteContent } from "@/hooks";
 // Components
-import { Checklist, DataTable, PageHero, ProcessSteps } from "@/components";
-import { SEO, Section, SectionHeader } from "@/components";
+import { Checklist, DataTableVariant, ProcessSteps } from "@/components";
+import { SEO, Section, SectionHeader, PageHero } from "@/components";
 import { CtaBand } from "@/components";
+// Data
+import { SECTION_ALT_TONE } from "@/data/layout";
 // Utils
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function ApproachPage() {
-  const { site } = useSiteContent();
+  const { site, seoBase } = useSiteContent();
   const { stages, retainerTable, contracting, ctaBand } = useApproachContent();
 
   return (
     <>
       <SEO
-        title={`Approach and engagement model | ${site.name}`}
+        {...seoBase}
+        title="Approach and engagement model"
         description="How Barito Bahalap Tech delivers systems: six defined stages from requirements to acceptance, followed by retainer-based support."
         path="/approach"
-        jsonLd={breadcrumbSchema(site, [
+        structuredData={breadcrumbSchema(site, [
           { name: "Home", path: "/" },
           { name: "Approach", path: "/approach" },
         ])}
@@ -39,13 +42,13 @@ export default function ApproachPage() {
         <ProcessSteps steps={stages} />
       </Section>
 
-      <Section tone="muted">
+      <Section tone={SECTION_ALT_TONE}>
         <SectionHeader
           eyebrow="Retainer"
           title="Continuing support after go-live."
-          description="For operational systems, BBT offers a retainer so that maintenance and further development continue without a new procurement process for each change."
+          intro="For operational systems, BBT offers a retainer so that maintenance and further development continue without a new procurement process for each change."
         />
-        <DataTable
+        <DataTableVariant
           caption="Retainer structure"
           columns={retainerTable.columns}
           rows={retainerTable.rows}
@@ -57,7 +60,7 @@ export default function ApproachPage() {
           <SectionHeader
             eyebrow={contracting.eyebrow}
             title={contracting.title}
-            description={contracting.description}
+            intro={contracting.description}
           />
           <Checklist items={contracting.items} />
         </div>

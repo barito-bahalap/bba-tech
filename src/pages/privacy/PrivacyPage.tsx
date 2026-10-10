@@ -6,13 +6,14 @@ import { useLegalContent, useSiteContent } from "@/hooks";
 import { LegalDocument, SEO } from "@/components";
 
 export default function PrivacyPage() {
-  const { site } = useSiteContent();
+  const { seoBase } = useSiteContent();
   const { privacy } = useLegalContent();
 
   return (
     <>
       <SEO
-        title={`${privacy.title} | ${site.name}`}
+        {...seoBase}
+        title={privacy.title}
         description={privacy.description}
         path="/privacy"
       />

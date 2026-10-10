@@ -2,7 +2,6 @@ import type { SiteIdentity } from "./content";
 
 export function organizationSchema(site: SiteIdentity) {
   return {
-    "@context": "https://schema.org",
     "@type": "Organization",
     name: site.name,
     alternateName: site.shortName,
@@ -32,11 +31,17 @@ export function organizationSchema(site: SiteIdentity) {
 
 export function websiteSchema(site: SiteIdentity) {
   return {
-    "@context": "https://schema.org",
     "@type": "WebSite",
     name: site.name,
     url: site.url,
     inLanguage: "en",
+  };
+}
+
+export function homeSchema(site: SiteIdentity) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organizationSchema(site), websiteSchema(site)],
   };
 }
 
