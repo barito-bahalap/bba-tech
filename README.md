@@ -46,5 +46,3 @@ Run (from the repository root C:\dev\bba):
 3. `pnpm --filter bba-tech dev`
 
 Deploy: Vercel, with `GITHUB_TOKEN` (read:packages) set as a build environment variable so the kit packages install from GitHub Packages.
-
-...
