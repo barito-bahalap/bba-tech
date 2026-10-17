@@ -1,21 +1,22 @@
 // Style
 import "./TermsPage.css";
 // Hooks
-import { useLegalContent, useSiteContent } from "@/hooks";
+import { useLocale, useSeoMeta } from "@/hooks";
 // Components
 import { LegalDocument, SEO } from "@/components";
 
 export default function TermsPage() {
-  const { seoBase } = useSiteContent();
-  const { terms } = useLegalContent();
+  const { content, href } = useLocale();
+  const seo = useSeoMeta();
+  const { terms } = content;
 
   return (
     <>
       <SEO
-        {...seoBase}
+        {...seo}
         title={terms.title}
         description={terms.description}
-        path="/terms"
+        path={href("/terms")}
       />
       <LegalDocument
         title={terms.title}

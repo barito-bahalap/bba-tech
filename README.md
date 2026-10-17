@@ -1,39 +1,45 @@
 bba-tech -> tech.baritobahalap.com
 
-Purpose: Barito Bahalap Tech (BBT) as the technology operating brand of BBA. This is where a prospective client confirms that BBT delivers and maintains enterprise systems, not one-off websites.
+Purpose: Barito Bahalap Tech (BBT) as the technology operating brand of BBA. A single-page landing site where a prospective client confirms that BBT delivers and maintains enterprise systems, not one-off websites.
 
-Audience: BUMN/BUMD, government institutions, corporate procurement and IT teams, institutional partners evaluating BBT as a long-term technology vendor.
+Languages: Bahasa Indonesia is the default (no URL prefix). English is optional under `/en`. Same i18n structure as bba-corporate (`src/i18n`, `src/data/id`, `src/data/en`).
 
-Contains:
+Page sections (all on `/`, anchored):
 
-- Home: positioning, services overview, track record summary, engagement model, governance summary
-- Services: enterprise systems, operational dashboards, business automation, custom software, system integration, interface design, long-term support and retainers
-- Track record: only the confirmed engagements (RSO2 Telkom Dashboard, E-Palugada, AMPI Kalteng website)
-- Approach: six delivery stages, retainer structure, procurement and contracting
-- Security and data governance: confidentiality, data isolation, access control, UU PDP 27/2022 position
-- Contact: inquiry form that prepares a mailto: message
-- Careers (interest only, no listed openings), privacy policy, terms of use, 404
+1. Hero
+2. Services (`#services`)
+3. Case studies (`#case-studies`)
+4. How we work, incl. security and data governance (`#how-we-work`)
+5. Engagement models (`#engagement`)
+6. About (`#about`)
+7. Consultation form (`#consultation`), prepares a mailto: to info@baritobahalap.com
+8. Careers / work with us (`#careers`), interest only, no listed openings
+
+Other routes: `/privacy`, `/terms`, 404. Each exists in `/en/...` too.
 
 Firewall rules for this repository:
 
-- No BBM content, links, copy or assets. BBA appears only as the parent organization (footer, privacy, JSON-LD) and links to baritobahalap.com.
+- No BBM content, links, copy or assets. BBA appears only as the parent organization (footer, about, privacy, JSON-LD) and links to baritobahalap.com.
 - Security copy refers to "other BBA operating units" and does not name them.
 - No client data is stored or processed by this site. It is static, with no database.
 - Repository access is limited to BBT personnel and the Founder/Director.
 
 Content rules:
 
-- All copy lives in `src/data`. Do not add clients, awards, certifications, revenue figures or partnerships that are not confirmed.
-- Client names in `src/data/caseStudies.ts` require written client permission before launch.
-- Placeholders in `src/data/legal.ts` and `src/data/site.ts` (email, dates, domain) must be resolved before launch.
+- All copy lives in `src/data/{id,en}`. Keep both languages in sync (the `ContentBundle` type enforces the same shape).
+- Do not add clients, awards, certifications, revenue figures or partnerships that are not confirmed.
+- Client names in `src/data/*/main.ts` (caseStudies) require written client permission before launch.
+- Search both locales for `[` placeholders and `TODO` before launch: legal entity, privacy/terms dates.
+- The consultation form goes to the shared BBA inbox (info@baritobahalap.com). The subject is prefixed `[BBT]` so it can be filtered.
 
 Structure:
 
-- `src/app`: App, router, lazy routes
-- `src/components`: dumb display components (layout, sections)
+- `src/app`: App, router, locale-aware routes
+- `src/components`: dumb display components (layout, ui)
 - `src/pages`: orchestration only, one folder per page
-- `src/hooks`: bridge between data and pages (`useTechContent`, `useContactForm`)
-- `src/data`: static content
+- `src/hooks`: `useLocale`, `useLanguageSwitch`, `useSeoMeta`, `useContactForm`, `useHashScroll`
+- `src/data`: static content per locale
+- `src/i18n`: locales, href localization, content bundle type
 - `src/domain`: content types and JSON-LD builders
 - `@/` resolves to `src`
 

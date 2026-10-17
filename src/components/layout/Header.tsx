@@ -1,39 +1,66 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // Style
-
+import "./language-switch.css";
 // Hooks
-import { useSiteContent } from "@/hooks";
+import { useLanguageSwitch, useLocale } from "@/hooks";
 // Components
 import { Button, SmartLink } from "@barito-bahalap/components";
 import { Brand } from "./Brand";
 
+function LanguageSwitch({ label }: { label: string }) {
+  const languages = useLanguageSwitch();
+
+  return (
+    <nav className="site-header__lang" aria-label={label}>
+      {languages.map((item) => (
+        <Link
+          key={item.code}
+          to={item.href}
+          lang={item.lang}
+          hrefLang={item.lang}
+          aria-current={item.active ? "true" : undefined}
+          title={item.label}
+          className={
+            item.active
+              ? "site-header__lang-link is-active"
+              : "site-header__lang-link"
+          }
+        >
+          {item.short}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
 export function Header() {
-  const { site, mainNav, headerCta } = useSiteContent();
-  const { pathname } = useLocation();
+  const { site, content, ui } = useLocale();
+  const { nav, headerCta } = content;
+  // location.key changes on every navigation (including hash links), so the
+  // mobile drawer closes after tapping an in-page anchor.
+  const { key } = useLocation();
   const [openedAt, setOpenedAt] = useState<string | null>(null);
-  const open = openedAt === pathname;
+  const open = openedAt === key;
 
   return (
     <header className="site-header">
       <div className="site-header__inner container">
         <Brand name={site.name} shortName={site.shortName} />
 
-        <nav className="site-header__nav" aria-label="Primary">
-          {mainNav.map((item) => (
+        <nav className="site-header__nav" aria-label={ui.menu.primaryNav}>
+          {nav.map((item) => (
             <SmartLink
               key={item.href}
               href={item.href}
-              className={
-                pathname === item.href
-                  ? "site-header__link is-active"
-                  : "site-header__link"
-              }
+              className="site-header__link"
             >
               {item.label}
             </SmartLink>
           ))}
         </nav>
+
+        <LanguageSwitch label={ui.language.label} />
 
         <div className="site-header__cta">
           <Button href={headerCta.href} variant="primary" brand="tech">
@@ -46,17 +73,20 @@ export function Header() {
           className="site-header__toggle"
           aria-expanded={open}
           aria-controls="mobile-drawer"
-          onClick={() => setOpenedAt(open ? null : pathname)}
+          onClick={() => setOpenedAt(open ? null : key)}
         >
           <span className="site-header__toggle-label">
-            {open ? "Close" : "Menu"}
+            {open ? ui.menu.close : ui.menu.open}
           </span>
         </button>
       </div>
 
       <div id="mobile-drawer" className="site-header__drawer" hidden={!open}>
-        <nav className="container site-header__drawer-nav" aria-label="Mobile">
-          {mainNav.map((item) => (
+        <nav
+          className="container site-header__drawer-nav"
+          aria-label={ui.menu.mobileNav}
+        >
+          {nav.map((item) => (
             <SmartLink
               key={item.href}
               href={item.href}

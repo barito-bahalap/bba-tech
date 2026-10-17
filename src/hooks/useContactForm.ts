@@ -4,58 +4,70 @@ import type { ChangeEvent, FormEvent } from "react";
 import type {
   ContactErrors,
   ContactValues,
-  InquiryType,
+  FormCopy,
+  MainContent,
+  Option,
 } from "@/domain/content";
 
 const emptyValues: ContactValues = {
   name: "",
   organization: "",
+  orgType: "",
   role: "",
   email: "",
   inquiryType: "",
+  timeline: "",
   message: "",
   consent: false,
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validate(values: ContactValues): ContactErrors {
+function validate(values: ContactValues, copy: FormCopy): ContactErrors {
   const errors: ContactErrors = {};
-  if (!values.name.trim()) errors.name = "Enter your name.";
+  if (!values.name.trim()) errors.name = copy.errors.name;
   if (!values.organization.trim())
-    errors.organization = "Enter your organization.";
-  if (!emailPattern.test(values.email.trim()))
-    errors.email = "Enter a valid email address.";
-  if (!values.inquiryType) errors.inquiryType = "Select an inquiry type.";
-  if (values.message.trim().length < 20)
-    errors.message = "Describe the requirement in at least 20 characters.";
-  if (!values.consent)
-    errors.consent = "Consent is required to send this inquiry.";
+    errors.organization = copy.errors.organization;
+  if (!emailPattern.test(values.email.trim())) errors.email = copy.errors.email;
+  if (!values.inquiryType) errors.inquiryType = copy.errors.inquiryType;
+  if (values.message.trim().length < 20) errors.message = copy.errors.message;
+  if (!values.consent) errors.consent = copy.errors.consent;
   return errors;
+}
+
+function optionLabel(options: Option[], value: string) {
+  if (!value) return "-";
+  return options.find((option) => option.value === value)?.label ?? value;
 }
 
 function buildMailto(
   recipient: string,
   values: ContactValues,
-  inquiryTypes: InquiryType[],
+  contact: MainContent["contact"],
+  copy: FormCopy,
 ) {
-  const typeLabel =
-    inquiryTypes.find((type) => type.value === values.inquiryType)?.label ??
-    values.inquiryType;
-  const subject = `BBT inquiry: ${typeLabel} (${values.organization.trim()})`;
+  const m = copy.mail;
+  const typeLabel = optionLabel(contact.inquiryTypes, values.inquiryType);
+  const subject = `[${m.subjectPrefix}] ${typeLabel} (${values.organization.trim()})`;
   const body = [
-    `Name: ${values.name.trim()}`,
-    `Organization: ${values.organization.trim()}`,
-    `Role: ${values.role.trim() || "-"}`,
-    `Email: ${values.email.trim()}`,
-    `Inquiry type: ${typeLabel}`,
+    `${m.name}: ${values.name.trim()}`,
+    `${m.organization}: ${values.organization.trim()}`,
+    `${m.orgType}: ${optionLabel(contact.orgTypes, values.orgType)}`,
+    `${m.role}: ${values.role.trim() || "-"}`,
+    `${m.email}: ${values.email.trim()}`,
+    `${m.inquiryType}: ${typeLabel}`,
+    `${m.timeline}: ${optionLabel(contact.timelines, values.timeline)}`,
     "",
     values.message.trim(),
   ].join("\n");
   return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-export function useContactForm(recipient: string, inquiryTypes: InquiryType[]) {
+export function useContactForm(
+  recipient: string,
+  contact: MainContent["contact"],
+  copy: FormCopy,
+) {
   const [values, setValues] = useState<ContactValues>(emptyValues);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [prepared, setPrepared] = useState(false);
@@ -79,10 +91,10 @@ export function useContactForm(recipient: string, inquiryTypes: InquiryType[]) {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validate(values);
+    const nextErrors = validate(values, copy);
     setErrors(nextErrors);
     if (Object.values(nextErrors).some(Boolean)) return;
-    window.location.href = buildMailto(recipient, values, inquiryTypes);
+    window.location.href = buildMailto(recipient, values, contact, copy);
     setPrepared(true);
   }
 

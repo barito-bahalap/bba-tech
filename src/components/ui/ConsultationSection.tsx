@@ -1,26 +1,24 @@
-// Style
-import "./ContactPage.css";
 // Hooks
-import { useContactContent, useContactForm, useSiteContent } from "@/hooks";
+import { useContactForm, useLocale } from "@/hooks";
 // Components
 import {
   Button,
   Checkbox,
   Checklist,
   Input,
-  PageHero,
-  SEO,
   Section,
+  SectionHeader,
   Select,
   Textarea,
 } from "@/components";
-// Utils
-import { breadcrumbSchema } from "@/domain/schema";
+// Data
+import { SECTION_ALT_TONE } from "@/data/layout";
+import { PageAnchor } from "./PageAnchor";
 
-export default function ContactPage() {
-  const { site, seoBase } = useSiteContent();
-  const { contactIntro, inquiryTypes, includeList, consentText } =
-    useContactContent();
+export function ConsultationSection() {
+  const { site, content, ui } = useLocale();
+  const { contact } = content;
+  const { form } = ui;
   const {
     values,
     errors,
@@ -28,36 +26,28 @@ export default function ContactPage() {
     handleChange,
     handleConsent,
     handleSubmit,
-  } = useContactForm(site.email, inquiryTypes);
+  } = useContactForm(site.email, contact, form);
 
-  const inquiryOptions = [{ value: "", label: "Select" }, ...inquiryTypes];
+  const blank = { value: "", label: form.labels.select };
+  const inquiryOptions = [blank, ...contact.inquiryTypes];
+  const orgTypeOptions = [blank, ...contact.orgTypes];
+  const timelineOptions = [blank, ...contact.timelines];
 
   return (
-    <>
-      <SEO
-        {...seoBase}
-        title="Contact"
-        description="Request a consultation with Barito Bahalap Tech about an enterprise system, dashboard, automation or support requirement."
-        path="/contact"
-        structuredData={breadcrumbSchema(site, [
-          { name: "Home", path: "/" },
-          { name: "Contact", path: "/contact" },
-        ])}
-      />
-
-      <PageHero
-        eyebrow={contactIntro.eyebrow}
-        title={contactIntro.title}
-        description={contactIntro.description}
-      />
-
-      <Section>
+    <PageAnchor id="consultation">
+      <Section tone={SECTION_ALT_TONE}>
+        <SectionHeader
+          eyebrow={contact.intro.eyebrow}
+          title={contact.intro.title}
+          intro={contact.intro.description}
+        />
         <div className="grid-split">
           <div className="stack">
-            <h2>What to include</h2>
-            <Checklist items={includeList} />
+            <h3>{contact.includeTitle}</h3>
+            <Checklist items={contact.includeList} />
             <p className="form-note">
-              Email: <a href={`mailto:${site.email}`}>{site.email}</a>
+              {contact.emailLabel}:{" "}
+              <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>
             <p className="form-note">{site.location}</p>
           </div>
@@ -67,7 +57,7 @@ export default function ContactPage() {
               <Input
                 id="name"
                 name="name"
-                label="Name"
+                label={form.labels.name}
                 autoComplete="name"
                 required
                 value={values.name}
@@ -75,31 +65,10 @@ export default function ContactPage() {
                 onChange={handleChange}
               />
               <Input
-                id="organization"
-                name="organization"
-                label="Organization"
-                autoComplete="organization"
-                required
-                value={values.organization}
-                error={errors.organization}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-grid__row">
-              <Input
-                id="role"
-                name="role"
-                label="Role"
-                autoComplete="organization-title"
-                value={values.role}
-                error={errors.role}
-                onChange={handleChange}
-              />
-              <Input
                 id="email"
                 name="email"
                 type="email"
-                label="Email"
+                label={form.labels.email}
                 autoComplete="email"
                 required
                 value={values.email}
@@ -107,10 +76,51 @@ export default function ContactPage() {
                 onChange={handleChange}
               />
             </div>
+            <div className="form-grid__row">
+              <Input
+                id="organization"
+                name="organization"
+                label={form.labels.organization}
+                autoComplete="organization"
+                required
+                value={values.organization}
+                error={errors.organization}
+                onChange={handleChange}
+              />
+              <Select
+                id="orgType"
+                name="orgType"
+                label={form.labels.orgType}
+                options={orgTypeOptions}
+                value={values.orgType}
+                error={errors.orgType}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-grid__row">
+              <Input
+                id="role"
+                name="role"
+                label={form.labels.role}
+                autoComplete="organization-title"
+                value={values.role}
+                error={errors.role}
+                onChange={handleChange}
+              />
+              <Select
+                id="timeline"
+                name="timeline"
+                label={form.labels.timeline}
+                options={timelineOptions}
+                value={values.timeline}
+                error={errors.timeline}
+                onChange={handleChange}
+              />
+            </div>
             <Select
               id="inquiryType"
               name="inquiryType"
-              label="Inquiry type"
+              label={form.labels.inquiryType}
               required
               options={inquiryOptions}
               value={values.inquiryType}
@@ -120,7 +130,7 @@ export default function ContactPage() {
             <Textarea
               id="message"
               name="message"
-              label="Requirement"
+              label={form.labels.message}
               rows={6}
               required
               value={values.message}
@@ -129,24 +139,22 @@ export default function ContactPage() {
             />
             <Checkbox
               id="consent"
-              label={consentText}
+              label={contact.consentText}
               checked={values.consent}
               error={errors.consent}
               onChange={handleConsent}
             />
             <div>
               <Button type="submit" variant="primary" brand="tech">
-                Prepare email
+                {form.submit}
               </Button>
             </div>
             <p className="form-note" aria-live="polite">
-              {prepared
-                ? "Your email application should now open with the inquiry. Send the email to complete the request."
-                : "This form prepares an email in your own mail application. Nothing is sent until you send it."}
+              {prepared ? form.statusPrepared : form.statusIdle}
             </p>
           </form>
         </div>
       </Section>
-    </>
+    </PageAnchor>
   );
 }

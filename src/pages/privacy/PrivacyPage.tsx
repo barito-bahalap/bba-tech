@@ -1,21 +1,22 @@
 // Style
 import "./PrivacyPage.css";
 // Hooks
-import { useLegalContent, useSiteContent } from "@/hooks";
+import { useLocale, useSeoMeta } from "@/hooks";
 // Components
 import { LegalDocument, SEO } from "@/components";
 
 export default function PrivacyPage() {
-  const { seoBase } = useSiteContent();
-  const { privacy } = useLegalContent();
+  const { content, href } = useLocale();
+  const seo = useSeoMeta();
+  const { privacy } = content;
 
   return (
     <>
       <SEO
-        {...seoBase}
+        {...seo}
         title={privacy.title}
         description={privacy.description}
-        path="/privacy"
+        path={href("/privacy")}
       />
       <LegalDocument
         title={privacy.title}

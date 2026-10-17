@@ -1,13 +1,12 @@
-// Style
-
 // Hooks
-import { useSiteContent } from "@/hooks";
+import { useLocale } from "@/hooks";
 // Components
 import { SmartLink } from "@barito-bahalap/components";
 import { Brand } from "./Brand";
 
 export function Footer() {
-  const { site, footerGroups } = useSiteContent();
+  const { site, content, ui } = useLocale();
+  const { footerGroups } = content;
 
   return (
     <footer className="site-footer">
@@ -18,7 +17,7 @@ export function Footer() {
             {site.tagline}. {site.location}.
           </p>
           <p className="site-footer__text">
-            {site.name} is an operating brand of{" "}
+            {site.name} {ui.footer.operatingBrand}{" "}
             <a href={site.holdingUrl} rel="noopener">
               {site.holdingName}
             </a>
@@ -46,8 +45,8 @@ export function Footer() {
 
       <div className="container site-footer__legal">
         <p>
-          &copy; {new Date().getFullYear()} {site.holdingName}. All rights
-          reserved.
+          &copy; {new Date().getFullYear()} {site.holdingName}.{" "}
+          {ui.footer.rights}
         </p>
       </div>
     </footer>

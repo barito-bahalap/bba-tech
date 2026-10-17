@@ -5,6 +5,7 @@ import "@barito-bahalap/styles";
 import "@barito-bahalap/styles/brands/tech";
 import "@barito-bahalap/styles/brands/scopes";
 import "./styles/app.css";
+import "./styles/theme.css";
 // App
 import { App } from "./app/App";
 

@@ -17,8 +17,8 @@ export const privacy: LegalPageContent = {
       id: "data-collected",
       heading: "Data we collect",
       paragraphs: [
-        "The website does not require an account. If you submit an inquiry, we receive the details you provide: name, organization, role, email address, inquiry type and message.",
-        "The inquiry form prepares an email in your own mail application. The information is sent only when you send that email.",
+        "The website does not require an account. If you submit a consultation request, we receive the details you provide: name, organization, organization type, role, email address, inquiry type, timeline and message.",
+        "The form prepares an email in your own mail application. The information is sent only when you send that email.",
       ],
     },
     {
@@ -39,13 +39,13 @@ export const privacy: LegalPageContent = {
       id: "retention",
       heading: "Retention and sharing",
       paragraphs: [
-        "Inquiry details are kept for as long as needed to handle the inquiry and any resulting engagement. They are not sold, and they are not shared with other BBA operating units without your approval.",
+        "Inquiry details are kept for as long as needed to handle the inquiry and any resulting engagement. They are not sold. Inquiries are received in the Barito Bahalap Agency email inbox and are not passed to other parties beyond what is needed to handle the inquiry without your approval.",
       ],
     },
     {
       id: "contact",
       heading: "Contact",
-      paragraphs: ["Privacy questions can be sent to [PRIVACY CONTACT EMAIL]."],
+      paragraphs: ["Privacy questions can be sent to info@baritobahalap.com."],
     },
   ],
 };

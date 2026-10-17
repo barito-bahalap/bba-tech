@@ -3,27 +3,22 @@ import "./sections.css";
 // Components
 import { Badge, KeyValueList } from "@/components";
 // Utils
-import type { CaseStudy } from "@/domain/content";
+import type { CaseLabels, CaseStudy } from "@/domain/content";
 
 export interface CaseStudyCardProps {
   study: CaseStudy;
-  compact?: boolean;
+  labels: CaseLabels;
 }
 
-export function CaseStudyCard({ study, compact = false }: CaseStudyCardProps) {
-  const items = compact
-    ? [
-        { label: "Client", value: study.client },
-        { label: "Engagement", value: study.engagement },
-      ]
-    : [
-        { label: "Client", value: `${study.client}, ${study.location}` },
-        { label: "Context", value: study.context },
-        { label: "Solution", value: study.solution },
-        { label: "BBT role", value: study.role },
-        { label: "Engagement", value: study.engagement },
-        ...(study.outcome ? [{ label: "Outcome", value: study.outcome }] : []),
-      ];
+export function CaseStudyCard({ study, labels }: CaseStudyCardProps) {
+  const items = [
+    { label: labels.client, value: `${study.client}, ${study.location}` },
+    { label: labels.context, value: study.context },
+    { label: labels.solution, value: study.solution },
+    { label: labels.role, value: study.role },
+    { label: labels.engagement, value: study.engagement },
+    ...(study.outcome ? [{ label: labels.outcome, value: study.outcome }] : []),
+  ];
 
   return (
     <article className="case-card" id={study.id}>

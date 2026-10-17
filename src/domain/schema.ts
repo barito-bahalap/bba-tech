@@ -24,24 +24,24 @@ export function organizationSchema(site: SiteIdentity) {
       "@type": "ContactPoint",
       contactType: "sales",
       email: site.email,
-      availableLanguage: ["en", "id"],
+      availableLanguage: ["id", "en"],
     },
   };
 }
 
-export function websiteSchema(site: SiteIdentity) {
+export function websiteSchema(site: SiteIdentity, lang: string) {
   return {
     "@type": "WebSite",
     name: site.name,
     url: site.url,
-    inLanguage: "en",
+    inLanguage: lang,
   };
 }
 
-export function homeSchema(site: SiteIdentity) {
+export function homeSchema(site: SiteIdentity, lang: string) {
   return {
     "@context": "https://schema.org",
-    "@graph": [organizationSchema(site), websiteSchema(site)],
+    "@graph": [organizationSchema(site), websiteSchema(site, lang)],
   };
 }
 
