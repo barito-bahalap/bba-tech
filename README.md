@@ -1,21 +1,19 @@
 bba-tech -> tech.baritobahalap.com
 
-Purpose: Barito Bahalap Tech (BBT) as the technology operating brand of BBA. A single-page landing site where a prospective client confirms that BBT delivers and maintains enterprise systems, not one-off websites.
+Purpose: Barito Bahalap Tech (BBT) as the technology operating brand of BBA. A landing site where a prospective client confirms that BBT delivers and maintains enterprise systems, not one-off websites.
 
 Languages: Bahasa Indonesia is the default (no URL prefix). English is optional under `/en`. Same i18n structure as bba-corporate (`src/i18n`, `src/data/id`, `src/data/en`).
 
-Page sections (all on `/`, anchored):
+Pages:
 
-1. Hero
-2. Services (`#services`)
-3. Case studies (`#case-studies`)
-4. How we work, incl. security and data governance (`#how-we-work`)
-5. Engagement models (`#engagement`)
-6. About (`#about`)
-7. Consultation form (`#consultation`), prepares a mailto: to info@baritobahalap.com
-8. Careers / work with us (`#careers`), interest only, no listed openings
+- `/` Home: hero, services (`services`), work teaser, how we work (`how-we-work`), engagement models (`engagement`), consultation form (`consultation`)
+- `/work` Work: overview table, project details and shared working pattern (credibility page)
+- `/about` About
+- `/careers` Careers (interest only, no listed openings)
+- `/privacy`, `/terms`, 404
+- Every route also exists under `/en`.
 
-Other routes: `/privacy`, `/terms`, 404. Each exists in `/en/...` too.
+Navigation: `src/config/navigation.ts`, same pattern as bba-corporate. A link with a `section` scrolls to that section id and the URL never gets a `#fragment`. On the same page it scrolls directly (`useSectionLink`). From another page it navigates with `state.scrollTo`, handled by the kit's `ScrollToSection`.
 
 Firewall rules for this repository:
 
@@ -29,21 +27,22 @@ Content rules:
 - All copy lives in `src/data/{id,en}`. Keep both languages in sync (the `ContentBundle` type enforces the same shape).
 - Do not add clients, awards, certifications, revenue figures or partnerships that are not confirmed.
 - Client names in `src/data/*/main.ts` (caseStudies) require written client permission before launch.
-- Search both locales for `[` placeholders and `TODO` before launch: legal entity, privacy/terms dates.
+- Search both locales for `[` placeholders and `TODO` before launch: legal entity, privacy and terms dates.
 - The consultation form goes to the shared BBA inbox (info@baritobahalap.com). The subject is prefixed `[BBT]` so it can be filtered.
 
 Structure:
 
 - `src/app`: App, router, locale-aware routes
 - `src/components`: dumb display components (layout, ui)
+- `src/config`: navigation (main nav, header CTA, footer groups)
 - `src/pages`: orchestration only, one folder per page
-- `src/hooks`: `useLocale`, `useLanguageSwitch`, `useSeoMeta`, `useContactForm`, `useHashScroll`
+- `src/hooks`: `useLocale`, `useLanguageSwitch`, `useSeoMeta`, `useContactForm`, `useSectionLink`
 - `src/data`: static content per locale
 - `src/i18n`: locales, href localization, content bundle type
 - `src/domain`: content types and JSON-LD builders
 - `@/` resolves to `src`
 
-Stack: React.js, TypeScript, Vite, static, no database. Shared UI, tokens and config come from `@barito-bahalap/*` (bba-shared-kit).
+Stack: React, TypeScript, Vite, static, no database. Shared UI, tokens and config come from `@barito-bahalap/*` (bba-shared-kit).
 
 Run (from the repository root C:\dev\bba):
 

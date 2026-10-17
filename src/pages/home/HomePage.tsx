@@ -1,16 +1,14 @@
 // Style
 import "./HomePage.css";
 // Hooks
-import { useLocale, useSeoMeta } from "@/hooks";
+import { useLocale, useSectionLink, useSeoMeta } from "@/hooks";
 // Components
 import {
   Button,
-  CaseStudyCard,
   Checklist,
   ConsultationSection,
   DataTableVariant,
   InfoCard,
-  KeyValueList,
   PageAnchor,
   PageHero,
   ProcessSteps,
@@ -25,17 +23,10 @@ import { LOCALES } from "@/i18n/locales";
 import { homeSchema } from "@/domain/schema";
 
 export default function HomePage() {
-  const { locale, content, site, ui, href } = useLocale();
+  const { locale, content, site, href } = useLocale();
   const seo = useSeoMeta();
-  const {
-    hero,
-    services,
-    caseStudies,
-    howWeWork,
-    engagement,
-    about,
-    workWithUs,
-  } = content;
+  const onSectionClick = useSectionLink();
+  const { hero, services, caseStudies, howWeWork, engagement } = content;
 
   return (
     <>
@@ -47,14 +38,20 @@ export default function HomePage() {
         structuredData={homeSchema(site, LOCALES[locale].htmlLang)}
       />
 
-      {/* 1. Hero */}
       <PageHero
         eyebrow={hero.eyebrow}
         title={hero.title}
         description={hero.description}
         actions={
           <>
-            <Button href={hero.primaryCta.href} variant="primary" brand="tech">
+            <Button
+              href={hero.primaryCta.href}
+              variant="primary"
+              brand="tech"
+              onClick={(e) =>
+                onSectionClick(e, hero.primaryCta, hero.primaryCta.href)
+              }
+            >
               {hero.primaryCta.label}
             </Button>
             <Button
@@ -78,7 +75,6 @@ export default function HomePage() {
         }
       />
 
-      {/* 2. Services */}
       <PageAnchor id="services">
         <Section>
           <SectionHeader
@@ -98,28 +94,30 @@ export default function HomePage() {
         </Section>
       </PageAnchor>
 
-      {/* 3. Case studies */}
-      <PageAnchor id="case-studies">
-        <Section tone={SECTION_ALT_TONE}>
-          <SectionHeader
-            eyebrow={caseStudies.intro.eyebrow}
-            title={caseStudies.intro.title}
-            intro={caseStudies.intro.description}
-          />
-          <div className="stack">
+      <Section tone={SECTION_ALT_TONE}>
+        <SectionHeader
+          eyebrow={caseStudies.intro.eyebrow}
+          title={caseStudies.intro.title}
+          intro={caseStudies.intro.description}
+        />
+        <div className="stack">
+          <div className="grid-cards grid-cards--3">
             {caseStudies.items.map((study) => (
-              <CaseStudyCard
+              <InfoCard
                 key={study.id}
-                study={study}
-                labels={ui.caseLabels}
+                title={study.name}
+                description={`${study.category}. ${study.status}.`}
               />
             ))}
-            <p className="form-note">{caseStudies.note}</p>
           </div>
-        </Section>
-      </PageAnchor>
+          <p>
+            <Button href={caseStudies.cta.href} variant="outline" brand="tech">
+              {caseStudies.cta.label}
+            </Button>
+          </p>
+        </div>
+      </Section>
 
-      {/* 4. How we work */}
       <PageAnchor id="how-we-work">
         <Section>
           <SectionHeader
@@ -148,7 +146,6 @@ export default function HomePage() {
         </Section>
       </PageAnchor>
 
-      {/* 5. Engagement models */}
       <PageAnchor id="engagement">
         <Section>
           <SectionHeader
@@ -180,55 +177,7 @@ export default function HomePage() {
         </Section>
       </PageAnchor>
 
-      {/* 6. About */}
-      <PageAnchor id="about">
-        <Section tone={SECTION_ALT_TONE}>
-          <div className="grid-split">
-            <div className="stack">
-              <SectionHeader
-                eyebrow={about.intro.eyebrow}
-                title={about.intro.title}
-              />
-              {about.paragraphs.map((paragraph) => (
-                <p className="prose-block" key={paragraph}>
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            <KeyValueList items={about.facts} />
-          </div>
-        </Section>
-      </PageAnchor>
-
-      {/* 7. Consultation form */}
       <ConsultationSection />
-
-      {/* 8. Work with us */}
-      <PageAnchor id="careers">
-        <Section>
-          <div className="grid-split">
-            <SectionHeader
-              eyebrow={workWithUs.intro.eyebrow}
-              title={workWithUs.intro.title}
-              intro={workWithUs.intro.description}
-            />
-            <div className="stack">
-              <h3>{workWithUs.areasTitle}</h3>
-              <Checklist items={workWithUs.areas} />
-              <p className="prose-block">{workWithUs.note}</p>
-              <p>
-                <Button
-                  href={`mailto:${site.email}?subject=${encodeURIComponent(workWithUs.mailSubject)}`}
-                  variant="outline"
-                  brand="tech"
-                >
-                  {workWithUs.cta}
-                </Button>
-              </p>
-            </div>
-          </div>
-        </Section>
-      </PageAnchor>
     </>
   );
 }

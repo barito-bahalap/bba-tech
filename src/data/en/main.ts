@@ -23,49 +23,18 @@ export const mainEn: MainContent = {
     foundingYear: 2026,
   },
 
-  nav: [
-    { label: "Services", href: "/#services" },
-    { label: "Case studies", href: "/#case-studies" },
-    { label: "How we work", href: "/#how-we-work" },
-    { label: "About", href: "/#about" },
-    { label: "Careers", href: "/#careers" },
-  ],
-
-  headerCta: { label: "Request a consultation", href: "/#consultation" },
-
-  footerGroups: [
-    {
-      title: "Company",
-      links: [
-        { label: "Services", href: "/#services" },
-        { label: "Case studies", href: "/#case-studies" },
-        { label: "How we work", href: "/#how-we-work" },
-        { label: "Engagement models", href: "/#engagement" },
-        { label: "About", href: "/#about" },
-        { label: "Careers", href: "/#careers" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { label: "Privacy policy", href: "/privacy" },
-        { label: "Terms of use", href: "/terms" },
-      ],
-    },
-    {
-      title: "Contact",
-      links: [{ label: "Request a consultation", href: "/#consultation" }],
-    },
-  ],
-
   hero: {
     eyebrow: "Barito Bahalap Tech",
     title:
       "Digital infrastructure for organizations that run on reliable systems.",
     description:
       "We design, build and maintain enterprise systems, operational dashboards and business automation for corporations, state-owned enterprises and public institutions. Every system is delivered under a clear scope and supported over the long term.",
-    primaryCta: { label: "Request a consultation", href: "/#consultation" },
-    secondaryCta: { label: "View case studies", href: "/#case-studies" },
+    primaryCta: {
+      label: "Request a consultation",
+      href: "/",
+      section: "consultation",
+    },
+    secondaryCta: { label: "View our work", href: "/work" },
     facts: [
       { label: "Focus", value: "Enterprise and internal systems" },
       { label: "Engagement", value: "Project delivery with retainer support" },
@@ -122,7 +91,7 @@ export const mainEn: MainContent = {
 
   caseStudies: {
     intro: {
-      eyebrow: "Case studies",
+      eyebrow: "Work",
       title: "Systems in operation under continuing support.",
       description: "Three engagements BBT is able to describe publicly.",
     },
@@ -176,6 +145,45 @@ export const mainEn: MainContent = {
       },
     ],
     note: "The projects listed here are the engagements BBT is able to describe publicly. Further references and project documentation can be provided during procurement, subject to client consent.",
+    cta: { label: "View all work", href: "/work" },
+  },
+
+  work: {
+    seo: {
+      title: "Work and track record",
+      description:
+        "Overview of work delivered by Barito Bahalap Tech: RSO2 Telkom Dashboard, E-Palugada and the official AMPI Kalteng website.",
+    },
+    intro: {
+      eyebrow: "Work",
+      title: "A track record of systems delivered and maintained.",
+      description:
+        "An overview of the engagements BBT can describe publicly, each with a defined scope, BBT role and form of continuing support.",
+    },
+    overview: {
+      intro: { eyebrow: "Overview", title: "Three systems at a glance." },
+      caption: "Overview of delivered work",
+      columns: ["Project", "Client", "Category", "Status"],
+    },
+    detailsIntro: { eyebrow: "Details", title: "Project details." },
+    patternsTitle: "The same working pattern on every project",
+    patterns: [
+      {
+        title: "Built around the client's workflow",
+        description:
+          "Systems are designed around the client's own processes, roles and data requirements, not the other way around.",
+      },
+      {
+        title: "Clear scope",
+        description:
+          "Each engagement is delivered against an agreed scope and agreed acceptance criteria.",
+      },
+      {
+        title: "Continued under retainer",
+        description:
+          "After handover, development and maintenance continue under a recurring retainer.",
+      },
+    ],
   },
 
   howWeWork: {
@@ -339,6 +347,11 @@ export const mainEn: MainContent = {
   },
 
   about: {
+    seo: {
+      title: "About BBT",
+      description:
+        "Barito Bahalap Tech is the technology operating brand of Barito Bahalap Agency, based in Palangka Raya, Central Kalimantan.",
+    },
     intro: {
       eyebrow: "About",
       title: "The technology division of Barito Bahalap Agency.",
@@ -346,7 +359,6 @@ export const mainEn: MainContent = {
     paragraphs: [
       "Barito Bahalap Tech (BBT) is the operating brand of Barito Bahalap Agency for technology and digital infrastructure, based in Palangka Raya, Central Kalimantan.",
       "BBT is currently small and led directly by its founder, who is responsible for the architecture, development and handover of every project. The team grows gradually as engagements require.",
-      "We prefer to build fewer systems and maintain them well, rather than deliver many one-off projects.",
     ],
     facts: [
       { label: "Operating brand of", value: "Barito Bahalap Agency" },
@@ -356,6 +368,24 @@ export const mainEn: MainContent = {
       {
         label: "Legal entity",
         value: "[FILL BEFORE LAUNCH: legal form and registration status]",
+      },
+    ],
+    valuesTitle: "How we work",
+    values: [
+      {
+        title: "Fewer systems, maintained well",
+        description:
+          "We prefer to build fewer systems and maintain them well, rather than deliver many one-off projects.",
+      },
+      {
+        title: "Documented handover",
+        description:
+          "Every system is handed over with documentation and written acceptance by the client.",
+      },
+      {
+        title: "Defined accountability",
+        description:
+          "Technical decisions rest with the BBT Delivery Lead. Contracts, finance and legal compliance are overseen at holding level.",
       },
     ],
   },
@@ -405,7 +435,12 @@ export const mainEn: MainContent = {
     emailLabel: "Email",
   },
 
-  workWithUs: {
+  careers: {
+    seo: {
+      title: "Careers",
+      description:
+        "BBT has no open positions. Introduce yourself for software development, quality assurance, design and delivery.",
+    },
     intro: {
       eyebrow: "Careers",
       title: "Work with us.",
@@ -419,8 +454,25 @@ export const mainEn: MainContent = {
       "Interface and experience design",
       "Delivery and solution architecture",
     ],
+    includeTitle: "What to include in your introduction",
+    include: [
+      "The area you are interested in",
+      "A summary of your experience and links to your work, such as a portfolio or repositories",
+      "Your availability and work location",
+    ],
     note: "If your experience fits one of these areas, you are welcome to introduce yourself. Introductions are reviewed when a relevant need arises.",
     cta: "Introduce yourself",
     mailSubject: "BBT careers: expression of interest",
+  },
+
+  ctaBand: {
+    title: "Discuss a system that needs to be built or supported.",
+    description:
+      "Describe your requirement briefly. We respond with the next step and the information needed to define the scope.",
+    cta: {
+      label: "Request a consultation",
+      href: "/",
+      section: "consultation",
+    },
   },
 };

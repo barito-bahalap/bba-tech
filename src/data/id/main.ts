@@ -23,49 +23,18 @@ export const mainId: MainContent = {
     foundingYear: 2026,
   },
 
-  nav: [
-    { label: "Layanan", href: "/#services" },
-    { label: "Studi Kasus", href: "/#case-studies" },
-    { label: "Cara Kerja", href: "/#how-we-work" },
-    { label: "Tentang", href: "/#about" },
-    { label: "Karier", href: "/#careers" },
-  ],
-
-  headerCta: { label: "Ajukan Konsultasi", href: "/#consultation" },
-
-  footerGroups: [
-    {
-      title: "Perusahaan",
-      links: [
-        { label: "Layanan", href: "/#services" },
-        { label: "Studi Kasus", href: "/#case-studies" },
-        { label: "Cara Kerja", href: "/#how-we-work" },
-        { label: "Model Kerja Sama", href: "/#engagement" },
-        { label: "Tentang", href: "/#about" },
-        { label: "Karier", href: "/#careers" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { label: "Kebijakan Privasi", href: "/privacy" },
-        { label: "Ketentuan Penggunaan", href: "/terms" },
-      ],
-    },
-    {
-      title: "Kontak",
-      links: [{ label: "Ajukan Konsultasi", href: "/#consultation" }],
-    },
-  ],
-
   hero: {
     eyebrow: "Barito Bahalap Tech",
     title:
       "Infrastruktur digital untuk organisasi yang bergantung pada sistem yang andal.",
     description:
       "Kami merancang, membangun, dan memelihara sistem enterprise, dasbor operasional, dan otomasi proses bisnis untuk korporasi, BUMN, dan institusi publik. Setiap sistem diserahkan dengan ruang lingkup yang jelas dan didukung dalam jangka panjang.",
-    primaryCta: { label: "Ajukan konsultasi", href: "/#consultation" },
-    secondaryCta: { label: "Lihat studi kasus", href: "/#case-studies" },
+    primaryCta: {
+      label: "Ajukan konsultasi",
+      href: "/",
+      section: "consultation",
+    },
+    secondaryCta: { label: "Lihat karya", href: "/work" },
     facts: [
       { label: "Fokus", value: "Sistem enterprise dan internal" },
       { label: "Kerja sama", value: "Proyek dengan dukungan retainer" },
@@ -122,7 +91,7 @@ export const mainId: MainContent = {
 
   caseStudies: {
     intro: {
-      eyebrow: "Studi kasus",
+      eyebrow: "Karya",
       title: "Sistem yang beroperasi di bawah dukungan berkelanjutan.",
       description: "Tiga pekerjaan yang dapat BBT jelaskan secara terbuka.",
     },
@@ -176,6 +145,45 @@ export const mainId: MainContent = {
       },
     ],
     note: "Proyek yang tercantum adalah pekerjaan yang dapat dijelaskan BBT secara terbuka. Referensi dan dokumentasi tambahan dapat diberikan saat proses pengadaan, dengan persetujuan klien.",
+    cta: { label: "Lihat semua karya", href: "/work" },
+  },
+
+  work: {
+    seo: {
+      title: "Karya dan rekam jejak",
+      description:
+        "Ikhtisar pekerjaan yang telah diserahkan Barito Bahalap Tech: RSO2 Telkom Dashboard, E-Palugada, dan situs web resmi AMPI Kalteng.",
+    },
+    intro: {
+      eyebrow: "Karya",
+      title: "Rekam jejak sistem yang diserahkan dan dipelihara.",
+      description:
+        "Ikhtisar pekerjaan yang dapat BBT jelaskan secara terbuka, masing-masing dengan ruang lingkup, peran BBT, dan bentuk dukungan lanjutan yang jelas.",
+    },
+    overview: {
+      intro: { eyebrow: "Ikhtisar", title: "Tiga sistem dalam satu tampilan." },
+      caption: "Ikhtisar pekerjaan",
+      columns: ["Proyek", "Klien", "Kategori", "Status"],
+    },
+    detailsIntro: { eyebrow: "Rincian", title: "Rincian per proyek." },
+    patternsTitle: "Pola kerja yang sama di setiap proyek",
+    patterns: [
+      {
+        title: "Dibangun di sekitar alur kerja klien",
+        description:
+          "Sistem dirancang mengikuti proses, peran, dan kebutuhan data internal klien, bukan sebaliknya.",
+      },
+      {
+        title: "Ruang lingkup yang jelas",
+        description:
+          "Setiap pekerjaan diserahkan terhadap ruang lingkup dan kriteria penerimaan yang disepakati.",
+      },
+      {
+        title: "Dilanjutkan melalui retainer",
+        description:
+          "Setelah serah terima, pengembangan dan pemeliharaan berlanjut melalui retainer berkala.",
+      },
+    ],
   },
 
   howWeWork: {
@@ -339,6 +347,11 @@ export const mainId: MainContent = {
   },
 
   about: {
+    seo: {
+      title: "Tentang BBT",
+      description:
+        "Barito Bahalap Tech adalah merek operasional teknologi dari Barito Bahalap Agency, berbasis di Palangka Raya, Kalimantan Tengah.",
+    },
     intro: {
       eyebrow: "Tentang",
       title: "Divisi teknologi dari Barito Bahalap Agency.",
@@ -346,7 +359,6 @@ export const mainId: MainContent = {
     paragraphs: [
       "Barito Bahalap Tech (BBT) adalah merek operasional Barito Bahalap Agency di bidang teknologi dan infrastruktur digital, berbasis di Palangka Raya, Kalimantan Tengah.",
       "BBT saat ini berukuran kecil dan dipimpin langsung oleh pendirinya, yang bertanggung jawab atas arsitektur, pengembangan, dan serah terima setiap proyek. Tim bertambah secara bertahap sesuai kebutuhan proyek.",
-      "Kami memilih membangun lebih sedikit sistem dan memeliharanya dengan baik, bukan banyak proyek sekali jadi.",
     ],
     facts: [
       { label: "Merek operasional dari", value: "Barito Bahalap Agency" },
@@ -356,6 +368,24 @@ export const mainId: MainContent = {
       {
         label: "Badan hukum",
         value: "[ISI SEBELUM LAUNCH: bentuk dan status badan hukum]",
+      },
+    ],
+    valuesTitle: "Prinsip kerja kami",
+    values: [
+      {
+        title: "Lebih sedikit sistem, dipelihara dengan baik",
+        description:
+          "Kami memilih membangun lebih sedikit sistem dan memeliharanya dengan baik, bukan banyak proyek sekali jadi.",
+      },
+      {
+        title: "Serah terima yang terdokumentasi",
+        description:
+          "Setiap sistem diserahkan bersama dokumentasi dan penerimaan tertulis oleh klien.",
+      },
+      {
+        title: "Akuntabilitas yang jelas",
+        description:
+          "Keputusan teknis berada pada Delivery Lead BBT. Kontrak, keuangan, dan kepatuhan hukum diawasi di tingkat holding.",
       },
     ],
   },
@@ -405,7 +435,12 @@ export const mainId: MainContent = {
     emailLabel: "Email",
   },
 
-  workWithUs: {
+  careers: {
+    seo: {
+      title: "Karier",
+      description:
+        "BBT belum membuka posisi. Perkenalkan diri Anda untuk bidang pengembangan perangkat lunak, penjaminan mutu, desain, dan delivery.",
+    },
     intro: {
       eyebrow: "Karier",
       title: "Bergabung dengan kami.",
@@ -419,8 +454,21 @@ export const mainId: MainContent = {
       "Desain antarmuka dan pengalaman pengguna",
       "Delivery dan arsitektur solusi",
     ],
+    includeTitle: "Yang perlu disertakan dalam perkenalan",
+    include: [
+      "Bidang yang Anda minati",
+      "Ringkasan pengalaman dan tautan karya, misalnya portofolio atau repositori",
+      "Ketersediaan dan lokasi kerja",
+    ],
     note: "Jika pengalaman Anda sesuai dengan salah satu bidang ini, silakan perkenalkan diri. Perkenalan ditinjau ketika kebutuhan yang relevan muncul.",
     cta: "Perkenalkan diri Anda",
     mailSubject: "BBT karier: perkenalan",
+  },
+
+  ctaBand: {
+    title: "Diskusikan sistem yang perlu dibangun atau didukung.",
+    description:
+      "Jelaskan kebutuhan Anda secara singkat. Kami menanggapi dengan langkah berikutnya dan informasi yang dibutuhkan untuk menentukan ruang lingkup.",
+    cta: { label: "Ajukan konsultasi", href: "/", section: "consultation" },
   },
 };

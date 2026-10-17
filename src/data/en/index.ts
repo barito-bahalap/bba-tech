@@ -1,3 +1,4 @@
+import { footerGroups } from "@barito-bahalap/config";
 import { mainEn } from "./main";
 import { privacy, terms } from "./legal";
 import { uiContent } from "./ui";
@@ -9,4 +10,5 @@ export const enContent: ContentBundle = {
   privacy,
   terms,
   ui: uiContent,
+  footerGroups,
 };

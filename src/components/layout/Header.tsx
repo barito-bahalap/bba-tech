@@ -2,11 +2,17 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 // Style
 import "./language-switch.css";
+// Config
+import { getHeaderCta, getMainNav } from "@/config/navigation";
 // Hooks
-import { useLanguageSwitch, useLocale } from "@/hooks";
+import { useLanguageSwitch, useLocale, useSectionLink } from "@/hooks";
 // Components
 import { Button, SmartLink } from "@barito-bahalap/components";
 import { Brand } from "./Brand";
+// Types
+import type { NavLink } from "@/domain/content";
+
+const normalize = (path: string) => path.replace(/\/+$/, "") || "/";
 
 function LanguageSwitch({ label }: { label: string }) {
   const languages = useLanguageSwitch();
@@ -35,13 +41,16 @@ function LanguageSwitch({ label }: { label: string }) {
 }
 
 export function Header() {
-  const { site, content, ui } = useLocale();
-  const { nav, headerCta } = content;
-  // location.key changes on every navigation (including hash links), so the
-  // mobile drawer closes after tapping an in-page anchor.
-  const { key } = useLocation();
+  const { locale, site, ui, href } = useLocale();
+  const { key, pathname } = useLocation();
+  const onSectionClick = useSectionLink();
   const [openedAt, setOpenedAt] = useState<string | null>(null);
   const open = openedAt === key;
+  const nav = getMainNav(locale);
+  const cta = getHeaderCta(locale);
+
+  const isActive = ({ href: target, section }: NavLink) =>
+    !section && normalize(href(target)) === normalize(pathname);
 
   return (
     <header className="site-header">
@@ -51,9 +60,11 @@ export function Header() {
         <nav className="site-header__nav" aria-label={ui.menu.primaryNav}>
           {nav.map((item) => (
             <SmartLink
-              key={item.href}
-              href={item.href}
+              key={item.label}
+              href={href(item.href)}
+              onClick={(e) => onSectionClick(e, item, href(item.href))}
               className="site-header__link"
+              aria-current={isActive(item) ? "page" : undefined}
             >
               {item.label}
             </SmartLink>
@@ -63,8 +74,13 @@ export function Header() {
         <LanguageSwitch label={ui.language.label} />
 
         <div className="site-header__cta">
-          <Button href={headerCta.href} variant="primary" brand="tech">
-            {headerCta.label}
+          <Button
+            href={href(cta.href)}
+            variant="primary"
+            brand="tech"
+            onClick={(e) => onSectionClick(e, cta, href(cta.href))}
+          >
+            {cta.label}
           </Button>
         </div>
 
@@ -88,15 +104,28 @@ export function Header() {
         >
           {nav.map((item) => (
             <SmartLink
-              key={item.href}
-              href={item.href}
+              key={item.label}
+              href={href(item.href)}
+              onClick={(e) => {
+                onSectionClick(e, item, href(item.href));
+                setOpenedAt(null);
+              }}
               className="site-header__drawer-link"
+              aria-current={isActive(item) ? "page" : undefined}
             >
               {item.label}
             </SmartLink>
           ))}
-          <Button href={headerCta.href} variant="primary" brand="tech">
-            {headerCta.label}
+          <Button
+            href={href(cta.href)}
+            variant="primary"
+            brand="tech"
+            onClick={(e) => {
+              onSectionClick(e, cta, href(cta.href));
+              setOpenedAt(null);
+            }}
+          >
+            {cta.label}
           </Button>
         </nav>
       </div>

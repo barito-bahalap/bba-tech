@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-// Anchor target for in-page navigation (/#services etc.). Offsets the scroll
-// so the sticky header does not cover the section heading.
+// Scroll target for section navigation. The offset keeps the sticky header
+// from covering the section heading.
 export function PageAnchor({
   id,
   children,

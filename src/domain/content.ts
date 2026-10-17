@@ -1,11 +1,17 @@
 export interface NavLink {
   label: string;
   href: string;
+  section?: string;
 }
 
 export interface FooterGroup {
   title: string;
   links: NavLink[];
+}
+
+export interface PageSeo {
+  title: string;
+  description: string;
 }
 
 export interface SiteIdentity {
@@ -77,6 +83,11 @@ export interface TableContent {
   caption: string;
   columns: string[];
   rows: string[][];
+}
+
+export interface TitledItem {
+  title: string;
+  description: string;
 }
 
 export interface LegalSection {
@@ -168,29 +179,42 @@ export interface UiContent {
 
 export interface MainContent {
   site: SiteIdentity;
-  nav: NavLink[];
-  headerCta: NavLink;
-  footerGroups: FooterGroup[];
   hero: HeroContent;
   services: { intro: SectionIntro; items: Service[] };
-  caseStudies: { intro: SectionIntro; items: CaseStudy[]; note: string };
+  caseStudies: {
+    intro: SectionIntro;
+    items: CaseStudy[];
+    note: string;
+    cta: NavLink;
+  };
+  work: {
+    seo: PageSeo;
+    intro: SectionIntro;
+    overview: { intro: SectionIntro; caption: string; columns: string[] };
+    detailsIntro: SectionIntro;
+    patternsTitle: string;
+    patterns: TitledItem[];
+  };
   howWeWork: {
     intro: SectionIntro;
     stages: EngagementStage[];
     principlesTitle: string;
-    principles: { title: string; description: string }[];
+    principles: TitledItem[];
     compliance: TableContent;
   };
   engagement: {
     intro: SectionIntro;
-    models: { title: string; description: string }[];
+    models: TitledItem[];
     retainer: TableContent;
     procurement: { title: string; note: string; items: string[] };
   };
   about: {
+    seo: PageSeo;
     intro: SectionIntro;
     paragraphs: string[];
     facts: { label: string; value: string }[];
+    valuesTitle: string;
+    values: TitledItem[];
   };
   contact: {
     intro: SectionIntro;
@@ -202,18 +226,23 @@ export interface MainContent {
     consentText: string;
     emailLabel: string;
   };
-  workWithUs: {
+  careers: {
+    seo: PageSeo;
     intro: SectionIntro;
     areasTitle: string;
     areas: string[];
+    includeTitle: string;
+    include: string[];
     note: string;
     cta: string;
     mailSubject: string;
   };
+  ctaBand: { title: string; description: string; cta: NavLink };
 }
 
 export interface TechContent extends MainContent {
   privacy: LegalPageContent;
   terms: LegalPageContent;
   ui: UiContent;
+  footerGroups: FooterGroup[];
 }
