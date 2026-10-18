@@ -2,6 +2,7 @@ import type { FooterGroup, NavLink } from "@/domain/content";
 import type { LocaleCode } from "@/i18n/locales";
 
 const text = {
+  home: { en: "Home", id: "Beranda" },
   services: { en: "Services", id: "Layanan" },
   work: { en: "Work", id: "Karya" },
   process: { en: "How we work", id: "Cara Kerja" },
@@ -30,6 +31,7 @@ function link(
 export function getMainNav(locale: string): NavLink[] {
   const l = pick(locale);
   return [
+    link("home", "/", l),
     link("services", "/", l, "services"),
     link("work", "/work", l),
     link("process", "/", l, "how-we-work"),
