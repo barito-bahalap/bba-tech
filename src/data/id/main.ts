@@ -99,7 +99,7 @@ export const mainId: MainContent = {
       {
         id: "rso2-telkom-dashboard",
         name: "RSO2 Telkom Dashboard",
-        client: "PT Telkom Indonesia (Regional 3)",
+        client: "PT Telkom Indonesia",
         location: "Surabaya, Jawa Timur",
         category: "Dasbor operasional dan otomasi laporan",
         context:
@@ -129,8 +129,8 @@ export const mainId: MainContent = {
       {
         id: "ampi-kalteng",
         name: "Situs Web Resmi AMPI Kalteng",
-        client: "AMPI Kalimantan Tengah",
-        location: "Kalimantan Tengah",
+        client: "DPD AMPI Kalteng",
+        location: "Palangka Raya, Kalimantan Tengah",
         category: "Platform informasi dan manajemen organisasi",
         context:
           "Kebutuhan akan platform pusat untuk mengelola informasi organisasi, program kerja, publikasi, dan interaksi publik.",

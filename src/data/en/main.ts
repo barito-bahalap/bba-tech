@@ -99,7 +99,7 @@ export const mainEn: MainContent = {
       {
         id: "rso2-telkom-dashboard",
         name: "RSO2 Telkom Dashboard",
-        client: "PT Telkom Indonesia (Regional 3)",
+        client: "PT Telkom Indonesia",
         location: "Surabaya, East Java",
         category: "Operational dashboard and report automation",
         context:
@@ -129,7 +129,7 @@ export const mainEn: MainContent = {
       {
         id: "ampi-kalteng",
         name: "Official Website AMPI Kalteng",
-        client: "AMPI Kalimantan Tengah",
+        client: "DPD AMPI Kalteng",
         location: "Central Kalimantan",
         category: "Organizational information and management platform",
         context:
