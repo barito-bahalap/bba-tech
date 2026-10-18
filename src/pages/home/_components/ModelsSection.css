@@ -1,0 +1,15 @@
+.models {
+  padding-block: var(--gw-block);
+}
+
+.models__inner {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.models__title {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}

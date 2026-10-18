@@ -1,0 +1,70 @@
+.service-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 16rem;
+  height: 22rem;
+  overflow: hidden;
+  border-radius: var(--gw-radius);
+  background-color: var(--gw-ink);
+  color: var(--gw-cream);
+}
+
+.service-card--wide {
+  width: 20rem;
+}
+
+.service-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 0, 0, 0.9), transparent 65%);
+}
+
+.service-card__body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.service-card__index {
+  color: var(--gw-cyan);
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+}
+
+.service-card__title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.service-card__text {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+@media (min-width: 1024px) {
+  .service-card {
+    width: 20rem;
+    height: 28rem;
+  }
+
+  .service-card--wide {
+    width: 30rem;
+  }
+}

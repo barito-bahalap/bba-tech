@@ -1,16 +1,22 @@
+// Style
+import "./Brand.css";
+// Components
 import { SmartLink } from "@barito-bahalap/components";
 
 export interface BrandProps {
   name: string;
-  shortName: string;
+  href: string;
+  onDark?: boolean;
 }
 
-export function Brand({ name, shortName }: BrandProps) {
+export function Brand({ name, href, onDark = false }: BrandProps) {
   return (
-    <SmartLink href="/" className="brand" aria-label={`${name}, home`}>
-      <span className="brand__mark" aria-hidden="true">
-        {shortName}
-      </span>
+    <SmartLink
+      href={href}
+      className={onDark ? "brand brand--on-dark" : "brand"}
+      aria-label={`${name}, home`}
+    >
+      <span className="brand__dot" aria-hidden="true" />
       <span className="brand__name">{name}</span>
     </SmartLink>
   );

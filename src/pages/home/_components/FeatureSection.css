@@ -1,0 +1,30 @@
+.feature {
+  padding-block: var(--gw-block);
+}
+
+.feature__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.feature__head {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.feature__title {
+  max-width: 18ch;
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+@media (min-width: 1024px) {
+  .feature__head {
+    justify-items: end;
+    text-align: right;
+    margin-left: auto;
+  }
+}

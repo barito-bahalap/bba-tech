@@ -1,0 +1,82 @@
+.stage-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 22rem;
+  padding: 1rem;
+  overflow: hidden;
+  border-radius: var(--gw-radius);
+}
+
+.stage-card--solid {
+  background-color: var(--gw-purple);
+  color: #fff;
+}
+
+.stage-card--paper {
+  border: 1px solid var(--gw-line);
+  background-color: var(--gw-cream);
+}
+
+.stage-card--photo {
+  background-color: var(--gw-ink);
+  color: var(--gw-cream);
+}
+
+.stage-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.stage-card--photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 0, 0, 0.85), transparent 70%);
+}
+
+.stage-card__index,
+.stage-card__body {
+  position: relative;
+  z-index: 1;
+}
+
+.stage-card__index {
+  font-family: var(--gw-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.stage-card__body {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stage-card__title {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.05;
+}
+
+.stage-card__text {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.stage-card__output {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid currentColor;
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}

@@ -1,0 +1,40 @@
+.model-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 17rem;
+  min-height: 17rem;
+  padding: 1rem;
+  border: 1px solid var(--gw-line);
+  border-radius: var(--gw-radius);
+  background-color: #fff;
+}
+
+.model-card__index {
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: var(--gw-cyan);
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+}
+
+.model-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.model-card__text {
+  margin: 0;
+  color: var(--gw-ink-soft);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  .model-card {
+    width: 22rem;
+  }
+}

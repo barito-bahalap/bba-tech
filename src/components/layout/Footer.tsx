@@ -1,3 +1,7 @@
+// Style
+import "./Footer.css";
+// Config
+import { getFooterGroups } from "@/config/navigation";
 // Hooks
 import { useLocale } from "@/hooks";
 // Components
@@ -5,46 +9,50 @@ import { SmartLink } from "@barito-bahalap/components";
 import { Brand } from "./Brand";
 
 export function Footer() {
-  const { site, content, ui } = useLocale();
-  const { footerGroups } = content;
+  const { locale, site, ui, href } = useLocale();
+  const groups = getFooterGroups(locale);
 
   return (
-    <footer className="site-footer">
-      <div className="container site-footer__inner">
-        <div className="site-footer__about">
-          <Brand name={site.name} shortName={site.shortName} />
-          <p className="site-footer__text">
-            {site.tagline}. {site.location}.
-          </p>
-          <p className="site-footer__text">
-            {site.name} {ui.footer.operatingBrand}{" "}
-            <a href={site.holdingUrl} rel="noopener">
-              {site.holdingName}
-            </a>
-            .
-          </p>
+    <footer className="footer">
+      <div className="footer__panel">
+        <div className="footer__top">
+          <div className="footer__about">
+            <Brand name={site.name} href={href("/")} onDark />
+            <p className="footer__text">
+              {site.tagline}. {site.location}.
+            </p>
+            <p className="footer__text">
+              {site.name} {ui.footer.operatingBrand}{" "}
+              <a href={site.holdingUrl} rel="noopener">
+                {site.holdingName}
+              </a>
+              .
+            </p>
+          </div>
+
+          {groups.map((group) => (
+            <nav
+              key={group.title}
+              className="footer__group"
+              aria-label={group.title}
+            >
+              <h2 className="footer__heading">{group.title}</h2>
+              <ul className="footer__list">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <SmartLink href={link.href}>{link.label}</SmartLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
-        {footerGroups.map((group) => (
-          <nav
-            key={group.title}
-            className="site-footer__group"
-            aria-label={group.title}
-          >
-            <h2 className="site-footer__heading">{group.title}</h2>
-            <ul className="site-footer__list">
-              {group.links.map((link) => (
-                <li key={link.href}>
-                  <SmartLink href={link.href}>{link.label}</SmartLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
-      </div>
+        <p className="footer__wordmark" aria-hidden="true">
+          {site.shortName}
+        </p>
 
-      <div className="container site-footer__legal">
-        <p>
+        <p className="footer__legal">
           &copy; {new Date().getFullYear()} {site.holdingName}.{" "}
           {ui.footer.rights}
         </p>

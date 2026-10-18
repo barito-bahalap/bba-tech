@@ -1,23 +1,15 @@
 // Style
 import "./HomePage.css";
 // Hooks
-import { useLocale, useSectionLink, useSeoMeta } from "@/hooks";
+import { useSeoMeta, useSelectedIndex } from "@/hooks";
+import { useCarousel, useLocale, useSectionLink } from "@/hooks";
 // Components
-import {
-  Button,
-  Checklist,
-  ConsultationSection,
-  DataTableVariant,
-  InfoCard,
-  PageAnchor,
-  PageHero,
-  ProcessSteps,
-  SEO,
-  Section,
-  SectionHeader,
-} from "@/components";
+import { ConsultationSection, SEO } from "@/components";
+import { CasesSection, FeatureSection, HeroSection } from "./_components";
+import { ModelsSection, PlatformSection, RetainerSection } from "./_components";
 // Data
-import { SECTION_ALT_TONE } from "@/data/layout";
+import { CAROUSEL_LABELS } from "@/data/layout";
+import { placeholders } from "@/data/placeholders";
 // Utils
 import { LOCALES } from "@/i18n/locales";
 import { homeSchema } from "@/domain/schema";
@@ -27,6 +19,18 @@ export default function HomePage() {
   const seo = useSeoMeta();
   const onSectionClick = useSectionLink();
   const { hero, services, caseStudies, howWeWork, engagement } = content;
+  const {
+    trackRef: servicesRef,
+    prev: servicesPrev,
+    next: servicesNext,
+  } = useCarousel();
+  const {
+    trackRef: modelsRef,
+    prev: modelsPrev,
+    next: modelsNext,
+  } = useCarousel();
+  const { index: caseIndex, select: selectCase } = useSelectedIndex();
+  const labels = CAROUSEL_LABELS[locale === "en" ? "en" : "id"];
 
   return (
     <>
@@ -38,144 +42,55 @@ export default function HomePage() {
         structuredData={homeSchema(site, LOCALES[locale].htmlLang)}
       />
 
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        description={hero.description}
-        actions={
-          <>
-            <Button
-              href={hero.primaryCta.href}
-              variant="primary"
-              brand="tech"
-              onClick={(e) =>
-                onSectionClick(e, hero.primaryCta, hero.primaryCta.href)
-              }
-            >
-              {hero.primaryCta.label}
-            </Button>
-            <Button
-              href={hero.secondaryCta.href}
-              variant="outline"
-              brand="tech"
-            >
-              {hero.secondaryCta.label}
-            </Button>
-          </>
-        }
-        aside={
-          <dl className="hero-facts">
-            {hero.facts.map((fact) => (
-              <div className="hero-facts__row" key={fact.label}>
-                <dt className="hero-facts__label">{fact.label}</dt>
-                <dd className="hero-facts__value">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+      <HeroSection
+        hero={hero}
+        image={placeholders.hero}
+        primaryHref={href(hero.primaryCta.href)}
+        secondaryHref={href(hero.secondaryCta.href)}
+        onPrimaryClick={(e) =>
+          onSectionClick(e, hero.primaryCta, href(hero.primaryCta.href))
         }
       />
 
-      <PageAnchor id="services">
-        <Section>
-          <SectionHeader
-            eyebrow={services.intro.eyebrow}
-            title={services.intro.title}
-            intro={services.intro.description}
-          />
-          <div className="grid-cards grid-cards--3">
-            {services.items.map((service) => (
-              <InfoCard
-                key={service.id}
-                title={service.title}
-                description={service.summary}
-              />
-            ))}
-          </div>
-        </Section>
-      </PageAnchor>
+      <FeatureSection
+        id="services"
+        intro={services.intro}
+        items={services.items}
+        images={placeholders.services}
+        trackRef={servicesRef}
+        onPrev={servicesPrev}
+        onNext={servicesNext}
+        labels={labels}
+      />
 
-      <Section tone={SECTION_ALT_TONE}>
-        <SectionHeader
-          eyebrow={caseStudies.intro.eyebrow}
-          title={caseStudies.intro.title}
-          intro={caseStudies.intro.description}
-        />
-        <div className="stack">
-          <div className="grid-cards grid-cards--3">
-            {caseStudies.items.map((study) => (
-              <InfoCard
-                key={study.id}
-                title={study.name}
-                description={`${study.category}. ${study.status}.`}
-              />
-            ))}
-          </div>
-          <p>
-            <Button href={caseStudies.cta.href} variant="outline" brand="tech">
-              {caseStudies.cta.label}
-            </Button>
-          </p>
-        </div>
-      </Section>
+      <PlatformSection
+        id="how-we-work"
+        content={howWeWork}
+        images={placeholders.stages}
+      />
 
-      <PageAnchor id="how-we-work">
-        <Section>
-          <SectionHeader
-            eyebrow={howWeWork.intro.eyebrow}
-            title={howWeWork.intro.title}
-            intro={howWeWork.intro.description}
-          />
-          <ProcessSteps steps={howWeWork.stages} />
-        </Section>
-        <Section tone={SECTION_ALT_TONE}>
-          <SectionHeader title={howWeWork.principlesTitle} />
-          <div className="grid-cards">
-            {howWeWork.principles.map((item) => (
-              <InfoCard
-                key={item.title}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
-          </div>
-          <DataTableVariant
-            caption={howWeWork.compliance.caption}
-            columns={howWeWork.compliance.columns}
-            rows={howWeWork.compliance.rows}
-          />
-        </Section>
-      </PageAnchor>
+      <CasesSection
+        content={caseStudies}
+        images={placeholders.cases}
+        selected={caseIndex}
+        onSelect={selectCase}
+        ctaHref={href(caseStudies.cta.href)}
+      />
 
-      <PageAnchor id="engagement">
-        <Section>
-          <SectionHeader
-            eyebrow={engagement.intro.eyebrow}
-            title={engagement.intro.title}
-            intro={engagement.intro.description}
-          />
-          <div className="grid-cards grid-cards--3">
-            {engagement.models.map((model) => (
-              <InfoCard
-                key={model.title}
-                title={model.title}
-                description={model.description}
-              />
-            ))}
-          </div>
-          <DataTableVariant
-            caption={engagement.retainer.caption}
-            columns={engagement.retainer.columns}
-            rows={engagement.retainer.rows}
-          />
-          <div className="grid-split">
-            <SectionHeader
-              title={engagement.procurement.title}
-              intro={engagement.procurement.note}
-            />
-            <Checklist items={engagement.procurement.items} />
-          </div>
-        </Section>
-      </PageAnchor>
+      <RetainerSection
+        id="engagement"
+        content={engagement}
+        image={placeholders.retainer}
+      />
+
+      <ModelsSection
+        title={engagement.intro.title}
+        models={engagement.models}
+        trackRef={modelsRef}
+        onPrev={modelsPrev}
+        onNext={modelsNext}
+        labels={labels}
+      />
 
       <ConsultationSection />
     </>

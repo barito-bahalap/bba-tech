@@ -1,0 +1,48 @@
+.retainer-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: var(--gw-radius);
+  background-color: var(--gw-cream);
+  color: var(--gw-ink);
+}
+
+.retainer-card__caption {
+  margin: 0;
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.retainer-card__rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.retainer-card__row {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--gw-line);
+}
+
+.retainer-card__cell {
+  font-size: 0.8125rem;
+  color: var(--gw-ink-soft);
+}
+
+.retainer-card__cell--lead {
+  color: var(--gw-ink);
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .retainer-card__row {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,21 @@
+.gw-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--gw-line);
+  border-radius: 4px;
+  background-color: rgba(245, 237, 206, 0.6);
+  color: var(--gw-ink-soft);
+  font-family: var(--gw-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.gw-tag--dark {
+  border-color: var(--gw-line-on-dark);
+  background-color: transparent;
+  color: var(--gw-cream);
+}

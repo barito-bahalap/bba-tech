@@ -1,0 +1,139 @@
+:root[data-theme="tech-editorial"],
+:root[data-theme="tech-editorial"] [data-brand] {
+  --gw-cyan: #1db9c3;
+  --gw-cyan-deep: #13939c;
+  --gw-purple: #7027a0;
+  --gw-purple-deep: #561d7c;
+  --gw-cream: #f5edce;
+  --gw-paper: #fbf8ec;
+  --gw-ink: #1a0000;
+  --gw-ink-soft: rgba(26, 0, 0, 0.72);
+  --gw-ink-muted: rgba(26, 0, 0, 0.55);
+  --gw-line: rgba(26, 0, 0, 0.14);
+  --gw-line-on-dark: rgba(245, 237, 206, 0.22);
+  --gw-radius: 10px;
+  --gw-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --gw-gutter: 1rem;
+  --gw-block: 3.5rem;
+  --gw-sans:
+    "Google Sans", "Google Sans Text", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --gw-mono:
+    var(--font-code, "Google Sans Code"), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+
+  --font-heading: var(--gw-sans);
+  --font-body: var(--gw-sans);
+  --font-control: var(--gw-sans);
+
+  --clr-primary: var(--gw-purple);
+  --clr-primary-rgb: 112, 39, 160;
+  --clr-primary-light: #8a3dbf;
+  --clr-primary-hover: var(--gw-purple-deep);
+  --clr-primary-soft: rgba(112, 39, 160, 0.1);
+  --clr-primary-ink: #ffffff;
+  --clr-accent: var(--gw-cyan);
+  --clr-accent-rgb: 29, 185, 195;
+  --clr-accent-hover: var(--gw-cyan-deep);
+  --clr-accent-soft: rgba(29, 185, 195, 0.16);
+  --clr-accent-ink: var(--gw-ink);
+
+  --clr-ink: var(--gw-ink);
+  --clr-ink-soft: var(--gw-ink-soft);
+  --clr-ink-muted: var(--gw-ink-muted);
+  --clr-ink-faint: rgba(26, 0, 0, 0.38);
+  --clr-text: var(--gw-ink);
+  --clr-text-muted: var(--gw-ink-soft);
+  --clr-bg: var(--gw-paper);
+  --clr-canvas: var(--gw-paper);
+  --clr-paper: #ffffff;
+  --clr-surface: var(--gw-cream);
+  --clr-surface-alt: #eee3b6;
+  --clr-border: var(--gw-line);
+  --clr-border-strong: rgba(26, 0, 0, 0.3);
+  --clr-card-hover-border: var(--gw-purple);
+
+  --radius-xs: 4px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}
+
+@media (min-width: 1024px) {
+  :root[data-theme="tech-editorial"] {
+    --gw-gutter: 2rem;
+    --gw-block: 6rem;
+  }
+}
+
+:root[data-theme="tech-editorial"] body {
+  background-color: var(--gw-ink);
+  color: var(--gw-ink);
+  font-family: var(--gw-sans);
+}
+
+:root[data-theme="tech-editorial"] :is(h1, h2, h3, h4) {
+  font-family: var(--gw-sans);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.gw-wrap {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: var(--gw-gutter);
+}
+
+:root[data-theme="tech-editorial"] .btn:not(.is-inactive):hover {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-theme="tech-editorial"] .btn--outline {
+  --btn-bg: rgba(245, 237, 206, 0.7);
+  --btn-fg: var(--gw-ink);
+  --btn-border: var(--gw-line);
+  --btn-bg-hover: var(--gw-cream);
+  --btn-border-hover: var(--gw-ink);
+}
+
+:root[data-theme="tech-editorial"] .page-hero {
+  background: var(--gw-cream);
+}
+
+:root[data-theme="tech-editorial"] .page-hero__title {
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+:root[data-theme="tech-editorial"] .eyebrow,
+:root[data-theme="tech-editorial"] .page-hero__eyebrow {
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+:root[data-theme="tech-editorial"] .section.dark {
+  background: var(--gw-ink);
+  color: var(--gw-cream);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes gw-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

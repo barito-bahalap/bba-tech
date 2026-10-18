@@ -1,0 +1,123 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky, 50);
+  background-color: var(--gw-ink);
+  color: var(--gw-cream);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 90rem;
+  min-height: 3.5rem;
+  margin-inline: auto;
+  padding-inline: calc(var(--gw-gutter) + 6px);
+}
+
+.header__nav,
+.header__lang,
+.header__cta {
+  display: none;
+}
+
+.header__end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__link {
+  color: var(--gw-cream);
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0.75;
+  transition: opacity 200ms var(--gw-ease);
+}
+
+.header__link:hover,
+.header__link[aria-current="page"] {
+  opacity: 1;
+}
+
+.header__trigger {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--gw-line-on-dark);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--gw-cream);
+  font-family: var(--gw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 100);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gw-ink);
+  color: var(--gw-cream);
+}
+
+.drawer__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.5rem;
+  padding-inline: calc(var(--gw-gutter) + 6px);
+}
+
+.drawer__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  padding-inline: calc(var(--gw-gutter) + 6px);
+}
+
+.drawer__link {
+  color: var(--gw-cream);
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-decoration: none;
+}
+
+.drawer__link[aria-current="page"] {
+  color: var(--gw-cyan);
+}
+
+.drawer__foot {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem calc(var(--gw-gutter) + 6px) 2rem;
+  border-top: 1px solid var(--gw-line-on-dark);
+}
+
+@media (min-width: 1024px) {
+  .header__nav {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  .header__lang,
+  .header__cta {
+    display: block;
+  }
+
+  .header__trigger {
+    display: none;
+  }
+}

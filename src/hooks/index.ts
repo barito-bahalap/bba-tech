@@ -1,6 +1,9 @@
+export { useCarousel } from "./useCarousel";
 export { useContactForm } from "./useContactForm";
 export { useHashScroll } from "./useHashScroll";
-export { useLanguageSwitch, type LanguageItem } from "./useLanguageSwitch";
+export { useHeaderDrawer } from "./useHeaderDrawer";
+export { useLanguageSwitch } from "./useLanguageSwitch";
 export { useLocale } from "./useLocale";
 export { useSeoMeta } from "./useSeoMeta";
-export { useSectionLink, scrollToSectionId } from "./useSectionLink";
+export { useSectionLink } from "./useSectionLink";
+export { useSelectedIndex } from "./useSelectedIndex";

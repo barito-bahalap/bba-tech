@@ -1,0 +1,20 @@
+.gw-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gw-controls__btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: var(--gw-purple);
+  color: #fff;
+  transition: background-color 200ms var(--gw-ease);
+}
+
+.gw-controls__btn:hover {
+  background-color: var(--gw-purple-deep);
+}
