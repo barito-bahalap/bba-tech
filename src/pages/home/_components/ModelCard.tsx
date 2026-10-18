@@ -12,7 +12,7 @@ interface ModelCardProps {
 export function ModelCard({ index, title, description }: ModelCardProps) {
   return (
     <article className="model-card">
-      <span className="model-card__index">{pad2(index + 1)}</span>
+      <strong className="model-card__index">{pad2(index + 1)}</strong>
       <h3 className="model-card__title">{title}</h3>
       <p className="model-card__text">{description}</p>
     </article>

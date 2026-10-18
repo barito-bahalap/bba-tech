@@ -6,6 +6,14 @@
   text-decoration: none;
 }
 
+.brand__bba-logo {
+  height: 18px;
+}
+
+.brand__bba-logo--full {
+  height: 48px;
+}
+
 .brand--on-dark {
   color: var(--gw-cream);
 }

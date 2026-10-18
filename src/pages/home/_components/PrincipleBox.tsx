@@ -12,7 +12,7 @@ interface PrincipleBoxProps {
 export function PrincipleBox({ index, title, description }: PrincipleBoxProps) {
   return (
     <article className="principle">
-      <span className="principle__index">{pad2(index + 1)}</span>
+      <strong className="principle__index">{pad2(index + 1)}</strong>
       <h3 className="principle__title">{title}</h3>
       <p className="principle__text">{description}</p>
     </article>

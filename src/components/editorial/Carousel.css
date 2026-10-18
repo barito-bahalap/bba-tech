@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 .gw-carousel__bar {
@@ -24,9 +25,11 @@
   margin-inline: calc(var(--gw-gutter) * -1);
   padding-inline: var(--gw-gutter);
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scroll-padding-inline: var(--gw-gutter);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .gw-carousel__track::-webkit-scrollbar {

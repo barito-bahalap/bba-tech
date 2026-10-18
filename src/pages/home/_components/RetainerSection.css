@@ -1,7 +1,6 @@
 .retainer {
   padding-block: var(--gw-block);
   background-color: var(--gw-purple);
-  color: #fff;
 }
 
 .retainer__inner {
@@ -40,6 +39,9 @@
   gap: 1rem;
   align-content: start;
   justify-items: start;
+}
+.retainer__copy * {
+  color: var(--clr-paper) !important;
 }
 
 .retainer__title {

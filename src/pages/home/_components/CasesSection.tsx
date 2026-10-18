@@ -49,9 +49,12 @@ export function CasesSection({
               />
             ))}
             <p className="cases__note">{note}</p>
-            <Button href={ctaHref} variant="primary" brand="tech">
-              {cta.label}
-            </Button>
+            <Button
+              label={cta.label}
+              href={ctaHref}
+              variant="primary"
+              brand="tech"
+            />
           </div>
         </div>
       </div>

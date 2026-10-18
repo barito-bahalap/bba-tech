@@ -2,8 +2,13 @@
   padding-block: var(--gw-block);
 }
 
+.feature .service-card * {
+  color: var(--clr-white);
+}
+
 .feature__inner {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
 }
 

@@ -139,7 +139,7 @@ export const mainEn: MainContent = {
         role: "System design and development by BBT.",
         engagement:
           "Recurring retainer for continued development and maintenance.",
-        status: "Delivered",
+        status: "In active operation",
         outcome:
           "A single platform through which the organization manages institutional information and public interaction digitally.",
       },

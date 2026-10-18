@@ -25,7 +25,7 @@ export function CaseItem({
       aria-pressed={active}
       onClick={onSelect}
     >
-      <span className="case-item__dot" aria-hidden="true" />
+      {/* <span className="case-item__dot" aria-hidden="true" /> */}
       <span className="case-item__index">{pad2(index + 1)}</span>
       <span className="case-item__name">{name}</span>
       <span className="case-item__cat">{category}</span>

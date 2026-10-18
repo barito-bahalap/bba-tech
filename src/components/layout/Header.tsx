@@ -17,7 +17,7 @@ import type { NavLink } from "@/domain/content";
 const normalize = (path: string) => path.replace(/\/+$/, "") || "/";
 
 export function Header() {
-  const { locale, site, ui, href } = useLocale();
+  const { locale, ui, href } = useLocale();
   const { pathname } = useLocation();
   const onSectionClick = useSectionLink();
   const languageItems = useLanguageSwitch();
@@ -32,7 +32,7 @@ export function Header() {
   return (
     <header className="header">
       <div className="header__inner">
-        <Brand name={site.name} href={href("/")} onDark />
+        <Brand logo onDark />
 
         <nav className="header__nav" aria-label={ui.menu.primaryNav}>
           {nav.map((item) => (
@@ -58,13 +58,13 @@ export function Header() {
           </div>
           <div className="header__cta">
             <Button
+              label={cta.label}
               href={href(cta.href)}
               variant="accent"
               brand="tech"
               onClick={(e) => onSectionClick(e, cta, href(cta.href))}
-            >
-              {cta.label}
-            </Button>
+              size="sm"
+            />
           </div>
           <button
             ref={triggerRef}
@@ -81,60 +81,66 @@ export function Header() {
 
       {open &&
         createPortal(
-          <div
-            id="mobile-drawer"
-            className="drawer"
-            role="dialog"
-            aria-modal="true"
-            aria-label={ui.menu.mobileNav}
-          >
-            <div className="drawer__bar">
-              <Brand name={site.name} href={href("/")} onDark />
-              <button
-                ref={closeRef}
-                type="button"
-                className="header__trigger"
-                onClick={dismissDrawer}
-              >
-                {ui.menu.close}
-              </button>
-            </div>
-            <nav className="drawer__nav" aria-label={ui.menu.mobileNav}>
-              {nav.map((item) => (
-                <SmartLink
-                  key={item.label}
-                  href={href(item.href)}
-                  className="drawer__link"
-                  aria-current={isActive(item) ? "page" : undefined}
+          <>
+            <div
+              className="drawer-backdrop"
+              aria-hidden="true"
+              onClick={dismissDrawer}
+            />
+            <div
+              id="mobile-drawer"
+              className="drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label={ui.menu.mobileNav}
+            >
+              <div className="drawer__bar">
+                <Brand logo onDark />
+                <button
+                  ref={closeRef}
+                  type="button"
+                  className="header__trigger"
+                  onClick={dismissDrawer}
+                >
+                  {ui.menu.close}
+                </button>
+              </div>
+              <nav className="drawer__nav" aria-label={ui.menu.mobileNav}>
+                {nav.map((item) => (
+                  <SmartLink
+                    key={item.label}
+                    href={href(item.href)}
+                    className="drawer__link"
+                    aria-current={isActive(item) ? "page" : undefined}
+                    onClick={(e) => {
+                      onSectionClick(e, item, href(item.href));
+                      closeDrawer();
+                    }}
+                  >
+                    {item.label}
+                  </SmartLink>
+                ))}
+              </nav>
+              <div className="drawer__foot">
+                <LanguageSwitcher
+                  items={languageItems}
+                  label={ui.language.label}
+                  onDark
+                />
+                <Button
+                  label={cta.label}
+                  href={href(cta.href)}
+                  variant="accent"
+                  brand="tech"
+                  fullWidth
                   onClick={(e) => {
-                    onSectionClick(e, item, href(item.href));
+                    onSectionClick(e, cta, href(cta.href));
                     closeDrawer();
                   }}
-                >
-                  {item.label}
-                </SmartLink>
-              ))}
-            </nav>
-            <div className="drawer__foot">
-              <LanguageSwitcher
-                items={languageItems}
-                label={ui.language.label}
-                onDark
-              />
-              <Button
-                href={href(cta.href)}
-                variant="accent"
-                brand="tech"
-                fullWidth
-                onClick={(e) => {
-                  onSectionClick(e, cta, href(cta.href));
-                  closeDrawer();
-                }}
-              >
-                {cta.label}
-              </Button>
+                />
+              </div>
             </div>
-          </div>,
+          </>,
           document.body,
         )}
     </header>

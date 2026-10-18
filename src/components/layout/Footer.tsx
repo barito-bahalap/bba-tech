@@ -3,21 +3,23 @@ import "./Footer.css";
 // Config
 import { getFooterGroups } from "@/config/navigation";
 // Hooks
-import { useLocale } from "@/hooks";
+import { useLanguageSwitch, useLocale } from "@/hooks";
 // Components
-import { SmartLink } from "@barito-bahalap/components";
+import { LanguageSwitcher, SmartLink } from "@barito-bahalap/components";
 import { Brand } from "./Brand";
 
 export function Footer() {
-  const { locale, site, ui, href } = useLocale();
+  const { locale, site, ui } = useLocale();
   const groups = getFooterGroups(locale);
+  const languageItems = useLanguageSwitch();
 
   return (
     <footer className="footer">
       <div className="footer__panel">
         <div className="footer__top">
           <div className="footer__about">
-            <Brand name={site.name} href={href("/")} onDark />
+            <Brand logo logoFull onDark />
+
             <p className="footer__text">
               {site.tagline}. {site.location}.
             </p>
@@ -48,14 +50,23 @@ export function Footer() {
           ))}
         </div>
 
-        <p className="footer__wordmark" aria-hidden="true">
-          {site.shortName}
-        </p>
+        <div className="stack end">
+          <p className="footer__wordmark" aria-hidden="true">
+            {site.shortName}
+          </p>
+        </div>
 
-        <p className="footer__legal">
-          &copy; {new Date().getFullYear()} {site.holdingName}.{" "}
-          {ui.footer.rights}
-        </p>
+        <div className="footer__legal stack row middle between">
+          <LanguageSwitcher
+            items={languageItems}
+            label={ui.language.label}
+            onDark
+          />
+          <p>
+            &copy; {new Date().getFullYear()} {site.holdingName}.{" "}
+            {ui.footer.rights}
+          </p>
+        </div>
       </div>
     </footer>
   );

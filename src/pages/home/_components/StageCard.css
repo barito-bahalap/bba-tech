@@ -12,7 +12,9 @@
 
 .stage-card--solid {
   background-color: var(--gw-purple);
-  color: #fff;
+}
+.stage-card--solid * {
+  color: var(--gw-cream) !important;
 }
 
 .stage-card--paper {
@@ -22,7 +24,9 @@
 
 .stage-card--photo {
   background-color: var(--gw-ink);
-  color: var(--gw-cream);
+}
+.stage-card--photo * {
+  color: var(--clr-paper) !important;
 }
 
 .stage-card__img {

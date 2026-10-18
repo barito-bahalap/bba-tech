@@ -23,29 +23,37 @@ export function HeroSection({
   onPrimaryClick,
 }: HeroSectionProps) {
   return (
-    <section className="hero">
-      <div className="hero__copy">
-        <Tag label={hero.eyebrow} />
-        <h1 className="hero__title">{hero.title}</h1>
-        <p className="hero__lead">{hero.description}</p>
-        <div className="hero__actions">
-          <Button
-            href={primaryHref}
-            variant="primary"
-            brand="tech"
-            onClick={onPrimaryClick}
-          >
-            {hero.primaryCta.label}
-          </Button>
-          <Button href={secondaryHref} variant="outline" brand="tech">
-            {hero.secondaryCta.label}
-          </Button>
+    <>
+      <section className="hero">
+        <div className="hero__copy">
+          <Tag label={hero.eyebrow} />
+          <h1 className="hero__title">{hero.title}</h1>
+          <p className="hero__lead">{hero.description}</p>
+          <div className="hero__actions">
+            <Button
+              label={hero.primaryCta.label}
+              href={primaryHref}
+              variant="primary"
+              brand="tech"
+              onClick={onPrimaryClick}
+            />
+            <Button
+              label={hero.secondaryCta.label}
+              href={secondaryHref}
+              variant="ink"
+              brand="tech"
+            />
+          </div>
         </div>
+
+        <div className="hero__media">
+          <img src={image} alt="" loading="eager" />
+        </div>
+      </section>
+
+      <div className="hf__wrapper">
         <HeroFacts facts={hero.facts} />
       </div>
-      <div className="hero__media">
-        <img src={image} alt="" loading="eager" />
-      </div>
-    </section>
+    </>
   );
 }

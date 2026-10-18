@@ -139,7 +139,7 @@ export const mainId: MainContent = {
         role: "Perancangan dan pengembangan sistem oleh BBT.",
         engagement:
           "Retainer berkala untuk pengembangan dan pemeliharaan lanjutan.",
-        status: "Telah diserahkan",
+        status: "Beroperasi aktif",
         outcome:
           "Satu platform tempat organisasi mengelola informasi kelembagaan dan interaksi publik secara digital.",
       },

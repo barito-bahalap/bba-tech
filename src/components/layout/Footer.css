@@ -36,9 +36,10 @@
   font-family: var(--gw-mono);
   font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.2em !important;
   text-transform: uppercase;
   opacity: 0.6;
+  color: var(--clr-surface) !important;
 }
 
 .footer__list {
@@ -60,24 +61,27 @@
 .footer__wordmark {
   margin: 2.5rem 0 0;
   color: var(--gw-cream);
-  font-size: clamp(4rem, 24vw, 18rem);
+  font-size: clamp(4rem, 20vw, 14rem);
   font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 0.8;
   text-transform: uppercase;
+  opacity: 0.3;
 }
 
 .footer__legal {
   margin: 1.5rem 0 0;
   padding-top: 1rem;
   border-top: 1px solid var(--gw-line-on-dark);
+}
+
+.footer__legal p {
   color: rgba(245, 237, 206, 0.6);
-  font-size: 0.75rem;
 }
 
 @media (min-width: 768px) {
   .footer__top {
-    grid-template-columns: 1.6fr repeat(2, 1fr);
+    grid-template-columns: 1.6fr repeat(3, 1fr);
   }
 
   .footer__panel {
