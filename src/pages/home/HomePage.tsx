@@ -7,12 +7,12 @@ import { useCarousel, useLocale, useSectionLink } from "@/hooks";
 import { ConsultationSection, SEO } from "@/components";
 import { CasesSection, FeatureSection, HeroSection } from "./_components";
 import { ModelsSection, PlatformSection, RetainerSection } from "./_components";
-// Data
-import { CAROUSEL_LABELS } from "@/data/layout";
-import { placeholders } from "@/data/placeholders";
 // Utils
+import { CAROUSEL_LABELS } from "@/data/layout";
 import { LOCALES } from "@/i18n/locales";
 import { homeSchema } from "@/domain/schema";
+// Assets
+import { AssetImages, ServiceImages, StageImages, CaseImages } from "@/assets";
 
 export default function HomePage() {
   const { locale, content, site, href } = useLocale();
@@ -44,7 +44,7 @@ export default function HomePage() {
 
       <HeroSection
         hero={hero}
-        image={placeholders.hero}
+        image={AssetImages.heroImg}
         primaryHref={href(hero.primaryCta.href)}
         secondaryHref={href(hero.secondaryCta.href)}
         onPrimaryClick={(e) =>
@@ -56,7 +56,7 @@ export default function HomePage() {
         id="services"
         intro={services.intro}
         items={services.items}
-        images={placeholders.services}
+        images={Object.values(ServiceImages)}
         trackRef={servicesRef}
         onPrev={servicesPrev}
         onNext={servicesNext}
@@ -66,12 +66,12 @@ export default function HomePage() {
       <PlatformSection
         id="how-we-work"
         content={howWeWork}
-        images={placeholders.stages}
+        images={Object.values(StageImages)}
       />
 
       <CasesSection
         content={caseStudies}
-        images={placeholders.cases}
+        images={Object.values(CaseImages)}
         selected={caseIndex}
         onSelect={selectCase}
         ctaHref={href(caseStudies.cta.href)}
@@ -80,7 +80,7 @@ export default function HomePage() {
       <RetainerSection
         id="engagement"
         content={engagement}
-        image={placeholders.retainer}
+        image={AssetImages.retainerImg}
       />
 
       <ModelsSection

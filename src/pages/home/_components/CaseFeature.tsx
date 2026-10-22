@@ -8,12 +8,13 @@ import type { CaseStudy } from "@/domain/content";
 interface CaseFeatureProps {
   study: CaseStudy;
   image: string;
+  alt: string;
 }
 
-export function CaseFeature({ study, image }: CaseFeatureProps) {
+export function CaseFeature({ study, image, alt }: CaseFeatureProps) {
   return (
     <article className="case-feature">
-      <img className="case-feature__img" src={image} alt="" loading="lazy" />
+      <img className="case-feature__img" src={image} alt={alt} loading="lazy" />
       <div className="case-feature__body">
         <Tag label={study.category} tone="dark" />
         <h3 className="case-feature__title">{study.name}</h3>

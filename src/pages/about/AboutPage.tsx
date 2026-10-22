@@ -1,18 +1,12 @@
+// Style
+import "./AboutPage.css";
 // Hooks
 import { useLocale, useSeoMeta } from "@/hooks";
 // Components
-import {
-  InfoCard,
-  KeyValueList,
-  PageHero,
-  SEO,
-  Section,
-  SectionCta,
-  SectionHeader,
-} from "@/components";
-// Data
-import { SECTION_ALT_TONE } from "@/data/layout";
+import { Section, SectionCta, SectionHeader } from "@/components";
+import { InfoCard, KeyValueList, PageHero, SEO } from "@/components";
 // Utils
+import { SECTION_ALT_TONE } from "@/data/layout";
 import { breadcrumbSchema } from "@/domain/schema";
 
 export default function AboutPage() {

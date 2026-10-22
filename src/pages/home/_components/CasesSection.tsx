@@ -27,6 +27,8 @@ export function CasesSection({
   const { intro, items, note, cta } = content;
   const active = pickAt(items, selected);
 
+  console.log(images);
+
   return (
     <section className="cases">
       <div className="gw-wrap cases__inner">
@@ -36,7 +38,11 @@ export function CasesSection({
         </div>
 
         <div className="cases__grid">
-          <CaseFeature study={active} image={pickAt(images, selected)} />
+          <CaseFeature
+            study={active}
+            image={pickAt(images, selected)}
+            alt={intro.title}
+          />
           <div className="cases__list">
             {items.map((study, index) => (
               <CaseItem
