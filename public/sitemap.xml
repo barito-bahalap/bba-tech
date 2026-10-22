@@ -29,17 +29,7 @@
     <loc>https://tech.baritobahalap.com/en/about</loc>
     <xhtml:link rel="alternate" hreflang="id" href="https://tech.baritobahalap.com/about"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://tech.baritobahalap.com/en/about"/>
-  </url>
-  <url>
-    <loc>https://tech.baritobahalap.com/careers</loc>
-    <xhtml:link rel="alternate" hreflang="id" href="https://tech.baritobahalap.com/careers"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tech.baritobahalap.com/en/careers"/>
-  </url>
-  <url>
-    <loc>https://tech.baritobahalap.com/en/careers</loc>
-    <xhtml:link rel="alternate" hreflang="id" href="https://tech.baritobahalap.com/careers"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tech.baritobahalap.com/en/careers"/>
-  </url>
+  </url> 
   <url><loc>https://tech.baritobahalap.com/privacy</loc></url>
   <url><loc>https://tech.baritobahalap.com/en/privacy</loc></url>
   <url><loc>https://tech.baritobahalap.com/terms</loc></url>

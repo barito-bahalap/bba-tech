@@ -9,7 +9,6 @@ Pages:
 - `/` Home: hero, services (`services`), work teaser, how we work (`how-we-work`), engagement models (`engagement`), consultation form (`consultation`)
 - `/work` Work: overview table, project details and shared working pattern (credibility page)
 - `/about` About
-- `/careers` Careers (interest only, no listed openings)
 - `/privacy`, `/terms`, 404
 - Every route also exists under `/en`.
 

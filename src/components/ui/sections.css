@@ -1,3 +1,9 @@
+.contact-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
 .cta-band {
   margin-top: 4rem;
   padding: 4rem 0;

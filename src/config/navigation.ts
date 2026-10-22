@@ -5,10 +5,8 @@ const text = {
   home: { en: "Home", id: "Beranda" },
   services: { en: "Services", id: "Layanan" },
   work: { en: "Work", id: "Karya" },
-  process: { en: "How we work", id: "Cara Kerja" },
   engagement: { en: "Engagement models", id: "Model Kerja Sama" },
   about: { en: "About", id: "Tentang" },
-  careers: { en: "Careers", id: "Karier" },
   contact: { en: "Request a consultation", id: "Ajukan Konsultasi" },
   company: { en: "Company", id: "Perusahaan" },
   legal: { en: "Legal", id: "Legal" },
@@ -34,9 +32,7 @@ export function getMainNav(locale: string): NavLink[] {
     link("home", "/", l),
     link("services", "/", l, "services"),
     link("work", "/work", l),
-    link("process", "/", l, "how-we-work"),
     link("about", "/about", l),
-    link("careers", "/careers", l),
   ];
 }
 
@@ -52,10 +48,8 @@ export function getFooterGroups(locale: string): FooterGroup[] {
       links: [
         link("services", "/", l, "services"),
         link("work", "/work", l),
-        link("process", "/", l, "how-we-work"),
         link("engagement", "/", l, "engagement"),
         link("about", "/about", l),
-        link("careers", "/careers", l),
       ],
     },
     {

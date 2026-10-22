@@ -226,17 +226,6 @@ export interface MainContent {
     consentText: string;
     emailLabel: string;
   };
-  careers: {
-    seo: PageSeo;
-    intro: SectionIntro;
-    areasTitle: string;
-    areas: string[];
-    includeTitle: string;
-    include: string[];
-    note: string;
-    cta: string;
-    mailSubject: string;
-  };
   ctaBand: { title: string; description: string; cta: NavLink };
 }
 

@@ -1,16 +1,8 @@
 // Hooks
 import { useContactForm, useLocale } from "@/hooks";
 // Components
-import {
-  Button,
-  Checkbox,
-  Checklist,
-  Input,
-  Section,
-  SectionHeader,
-  Select,
-  Textarea,
-} from "@/components";
+import { Button, Input, Select, Textarea } from "@/components";
+import { Checkbox, Checklist, Section, SectionHeader } from "@/components";
 // Data
 import { SECTION_ALT_TONE } from "@/data/layout";
 import { PageAnchor } from "./PageAnchor";
@@ -19,14 +11,8 @@ export function ConsultationSection() {
   const { site, content, ui } = useLocale();
   const { contact } = content;
   const { form } = ui;
-  const {
-    values,
-    errors,
-    prepared,
-    handleChange,
-    handleConsent,
-    handleSubmit,
-  } = useContactForm(site.email, contact, form);
+  const { values, errors, handleChange, handleConsent, handleSubmit } =
+    useContactForm(site.email, contact, form);
 
   const blank = { value: "", label: form.labels.select };
   const inquiryOptions = [blank, ...contact.inquiryTypes];
@@ -42,14 +28,12 @@ export function ConsultationSection() {
           intro={contact.intro.description}
         />
         <div className="grid-split">
-          <div className="stack">
-            <h3>{contact.includeTitle}</h3>
+          <div className="contact-checklist">
+            <h4>{contact.includeTitle}</h4>
             <Checklist items={contact.includeList} />
             <p className="form-note">
-              {contact.emailLabel}:{" "}
-              <a href={`mailto:${site.email}`}>{site.email}</a>
+              Atau email ke <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>
-            <p className="form-note">{site.location}</p>
           </div>
 
           <form className="form-grid" onSubmit={handleSubmit} noValidate>
@@ -82,7 +66,6 @@ export function ConsultationSection() {
                 name="organization"
                 label={form.labels.organization}
                 autoComplete="organization"
-                required
                 value={values.organization}
                 error={errors.organization}
                 onChange={handleChange}
@@ -144,14 +127,14 @@ export function ConsultationSection() {
               error={errors.consent}
               onChange={handleConsent}
             />
-            <div>
-              <Button type="submit" variant="primary" brand="tech">
-                {form.submit}
-              </Button>
-            </div>
-            <p className="form-note" aria-live="polite">
-              {prepared ? form.statusPrepared : form.statusIdle}
-            </p>
+
+            <Button
+              label={form.submit}
+              type="submit"
+              variant="primary"
+              brand="tech"
+              fullWidth
+            />
           </form>
         </div>
       </Section>

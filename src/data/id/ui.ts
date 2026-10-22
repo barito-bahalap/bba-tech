@@ -1,17 +1,17 @@
 import type { UiContent } from "@/domain/content";
 
 export const uiContent: UiContent = {
-  skipToContent: "Langsung ke konten",
+  skipToContent: "Lompat ke konten utama",
   menu: {
     open: "Menu",
-    close: "Tutup",
+    close: "Tutup menu",
     primaryNav: "Navigasi utama",
     mobileNav: "Navigasi seluler",
   },
   language: { label: "Bahasa" },
   footer: {
-    operatingBrand: "merupakan merek operasional dari",
-    rights: "Hak cipta dilindungi.",
+    operatingBrand: "adalah unit operasional dari",
+    rights: "Seluruh hak dilindungi.",
   },
   caseLabels: {
     client: "Klien",
@@ -38,14 +38,14 @@ export const uiContent: UiContent = {
       organization: "Masukkan nama organisasi.",
       email: "Masukkan alamat email yang valid.",
       inquiryType: "Pilih jenis kebutuhan.",
-      message: "Jelaskan kebutuhan Anda minimal 20 karakter.",
-      consent: "Persetujuan diperlukan untuk mengirim permintaan ini.",
+      message: "Jelaskan kebutuhan Anda, minimal 20 karakter.",
+      consent: "Centang persetujuan untuk melanjutkan.",
     },
     submit: "Siapkan email",
     statusIdle:
-      "Formulir ini menyiapkan email di aplikasi email Anda. Tidak ada yang terkirim sebelum Anda mengirim email tersebut.",
+      "Formulir ini menyiapkan email di aplikasi email Anda. Tidak ada data yang terkirim sebelum Anda mengirim emailnya.",
     statusPrepared:
-      "Aplikasi email Anda seharusnya terbuka dengan permintaan ini. Kirim email tersebut untuk menyelesaikan permintaan.",
+      "Aplikasi email Anda akan terbuka dengan permintaan ini. Kirim emailnya untuk menyelesaikan permintaan.",
     mail: {
       subjectPrefix: "BBT",
       name: "Nama",
@@ -61,7 +61,7 @@ export const uiContent: UiContent = {
     seoTitle: "Halaman tidak ditemukan",
     code: "404",
     title: "Halaman tidak ditemukan.",
-    sub: "Alamat yang Anda tuju tidak tersedia atau telah dipindahkan.",
+    sub: "Alamat yang Anda tuju tidak ada atau sudah dipindahkan.",
     homeCta: "Kembali ke beranda",
   },
 };
