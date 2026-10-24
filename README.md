@@ -9,7 +9,7 @@ Pages:
 - `/` Home: hero, services (`services`), work teaser, how we work (`how-we-work`), engagement models (`engagement`), consultation form (`consultation`)
 - `/work` Work: overview table, project details and shared working pattern (credibility page)
 - `/about` About
-- `/privacy`, `/terms`, 404
+- 404
 - Every route also exists under `/en`.
 
 Navigation: `src/config/navigation.ts`, same pattern as bba-corporate. A link with a `section` scrolls to that section id and the URL never gets a `#fragment`. On the same page it scrolls directly (`useSectionLink`). From another page it navigates with `state.scrollTo`, handled by the kit's `ScrollToSection`.
