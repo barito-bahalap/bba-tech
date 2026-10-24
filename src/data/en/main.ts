@@ -12,7 +12,7 @@ export const mainEn: MainContent = {
     holdingName: "Barito Bahalap Agency",
     holdingUrl: "https://baritobahalap.com",
     location: "Palangka Raya, Central Kalimantan, Indonesia",
-    email: "info@baritobahalap.com",
+    email: "baritobahalapagency@gmail.com",
     founder: "Basilius Tengang",
     foundingYear: 2026,
   },

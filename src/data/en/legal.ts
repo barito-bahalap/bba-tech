@@ -45,7 +45,9 @@ export const privacy: LegalPageContent = {
     {
       id: "contact",
       heading: "Contact",
-      paragraphs: ["Privacy questions can be sent to info@baritobahalap.com."],
+      paragraphs: [
+        "Privacy questions can be sent to baritobahalapagency@gmail.com.",
+      ],
     },
   ],
 };

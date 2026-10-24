@@ -46,7 +46,7 @@ export const privacy: LegalPageContent = {
       id: "contact",
       heading: "Kontak",
       paragraphs: [
-        "Pertanyaan terkait privasi dapat dikirim ke info@baritobahalap.com.",
+        "Pertanyaan terkait privasi dapat dikirim ke baritobahalapagency@gmail.com.",
       ],
     },
   ],

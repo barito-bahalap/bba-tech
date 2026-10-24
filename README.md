@@ -28,6 +28,7 @@ Content rules:
 - Client names in `src/data/*/main.ts` (caseStudies) require written client permission before launch.
 - Search both locales for `[` placeholders and `TODO` before launch: legal entity, privacy and terms dates.
 - The consultation form goes to the shared BBA inbox (info@baritobahalap.com). The subject is prefixed `[BBT]` so it can be filtered.
+<!-- TODO: change baritobahalapagency@gmail.com with info@baritobahalap.com later when upgraded -->
 
 Structure:
 
