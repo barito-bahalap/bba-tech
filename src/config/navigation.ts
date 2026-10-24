@@ -1,5 +1,7 @@
 import type { FooterGroup, NavLink } from "@/domain/content";
-import type { LocaleCode } from "@/i18n/locales";
+import { externalHref, type LocaleCode } from "@/i18n/locales";
+
+const CORPORATE_ORIGIN = "https://baritobahalap.com";
 
 const text = {
   home: { en: "Home", id: "Beranda" },
@@ -55,8 +57,8 @@ export function getFooterGroups(locale: string): FooterGroup[] {
     {
       title: text.legal[l],
       links: [
-        link("privacy", "https://baritobahalap.com/privacy", l),
-        link("terms", "https://baritobahalap.com/terms", l),
+        link("privacy", externalHref(CORPORATE_ORIGIN, "/privacy", l), l),
+        link("terms", externalHref(CORPORATE_ORIGIN, "/terms", l), l),
       ],
     },
     {

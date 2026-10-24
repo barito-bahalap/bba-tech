@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 // Style
 import "./Footer.css";
 // Config
@@ -10,7 +11,7 @@ import { Brand } from "./Brand";
 
 export function Footer() {
   const { locale, site, ui } = useLocale();
-  const groups = getFooterGroups(locale);
+  const groups = useMemo(() => getFooterGroups(locale), [locale]);
   const languageItems = useLanguageSwitch();
 
   return (
@@ -41,7 +42,7 @@ export function Footer() {
               <h2 className="footer__heading">{group.title}</h2>
               <ul className="footer__list">
                 {group.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={`${link.href}-${link.label}`}>
                     <SmartLink href={link.href}>{link.label}</SmartLink>
                   </li>
                 ))}

@@ -27,8 +27,6 @@ export function CasesSection({
   const { intro, items, note, cta } = content;
   const active = pickAt(items, selected);
 
-  console.log(images);
-
   return (
     <section className="cases">
       <div className="gw-wrap cases__inner">

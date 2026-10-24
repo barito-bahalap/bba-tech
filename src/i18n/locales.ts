@@ -35,3 +35,12 @@ export function localizeHref(href: string, locale: LocaleCode): string {
   const path = href === "/" ? "" : href;
   return `${localePrefix(locale)}${path}` || "/";
 }
+
+export function externalHref(
+  origin: string,
+  path: string,
+  locale: LocaleCode,
+): string {
+  const clean = path === "/" ? "" : path;
+  return `${origin}${localePrefix(locale)}${clean}`;
+}
