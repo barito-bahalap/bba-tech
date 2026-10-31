@@ -6,7 +6,7 @@ const CORPORATE_ORIGIN = "https://baritobahalap.com";
 const text = {
   home: { en: "Home", id: "Beranda" },
   services: { en: "Services", id: "Layanan" },
-  work: { en: "Work", id: "Karya" },
+  work: { en: "Work", id: "Portofolio" },
   engagement: { en: "Engagement models", id: "Model Kerja Sama" },
   about: { en: "About", id: "Tentang" },
   contact: { en: "Request a consultation", id: "Ajukan Konsultasi" },

@@ -81,7 +81,7 @@ export const mainId: MainContent = {
 
   caseStudies: {
     intro: {
-      eyebrow: "Karya",
+      eyebrow: "Portofolio",
       title: "Sudah berjalan di produksi.",
       description: "Tiga sistem yang bisa kami tunjukkan secara terbuka.",
     },
@@ -132,17 +132,17 @@ export const mainId: MainContent = {
       },
     ],
     note: "Referensi dan dokumentasi tambahan dapat diberikan saat proses pengadaan, dengan persetujuan klien.",
-    cta: { label: "Lihat semua karya", href: "/work" },
+    cta: { label: "Lihat portofolio", href: "/work" },
   },
 
   work: {
     seo: {
-      title: "Karya dan rekam jejak",
+      title: "Portofolio dan rekam jejak",
       description:
         "Sistem yang telah dibangun Barito Bahalap Tech: RSO2 Telkom Dashboard, E-Palugada, dan situs web resmi AMPI Kalteng.",
     },
     intro: {
-      eyebrow: "Karya",
+      eyebrow: "Portofolio",
       title: "Tiga sistem yang kami bangun dan rawat.",
       description:
         "Setiap entri memuat apa yang kami kerjakan, peran BBT, dan kelanjutannya setelah serah terima.",
