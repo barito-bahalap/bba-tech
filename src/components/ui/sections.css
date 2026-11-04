@@ -76,6 +76,19 @@
   color: var(--clr-text, inherit);
 }
 
+.form-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding-left: 0;
+}
+.form-links a {
+  color: var(--clr-primary);
+  font-weight: var(--fw-semibold);
+  border-bottom: var(--border-w) solid var(--clr-primary);
+}
+
 @media (min-width: 48rem) {
   .case-card {
     padding: 2rem;

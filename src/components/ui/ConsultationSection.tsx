@@ -2,16 +2,34 @@
 import { useContactForm, useLocale } from "@/hooks";
 // Components
 import { Button, Input, Select, Textarea } from "@/components";
-import { Checkbox, Checklist, Section, SectionHeader } from "@/components";
+import { Checklist, Section, SectionHeader } from "@/components";
 // Data
 import { SECTION_ALT_TONE } from "@/data/layout";
 import { PageAnchor } from "./PageAnchor";
 
+const COPY = {
+  en: {
+    optional: "optional",
+    prepared:
+      "Your email should open with the message ready to send. If nothing opened, choose your email service:",
+    defaultApp: "Default email app",
+    orEmail: "Or email",
+  },
+  id: {
+    optional: "opsional",
+    prepared:
+      "Email Anda akan terbuka dengan pesan siap kirim. Jika tidak terbuka, pilih layanan email Anda:",
+    defaultApp: "Aplikasi email bawaan",
+    orEmail: "Atau email ke",
+  },
+} as const;
+
 export function ConsultationSection() {
-  const { site, content, ui } = useLocale();
+  const { locale, site, content, ui } = useLocale();
   const { contact } = content;
   const { form } = ui;
-  const { values, errors, handleChange, handleConsent, handleSubmit } =
+  const text = COPY[locale === "en" ? "en" : "id"];
+  const { values, errors, prepared, links, handleChange, handleSubmit } =
     useContactForm(site.email, contact, form);
 
   const blank = { value: "", label: form.labels.select };
@@ -32,7 +50,7 @@ export function ConsultationSection() {
             <h4>{contact.includeTitle}</h4>
             <Checklist items={contact.includeList} />
             <p className="form-note">
-              Atau email ke <a href={`mailto:${site.email}`}>{site.email}</a>
+              {text.orEmail} <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>
           </div>
 
@@ -64,7 +82,7 @@ export function ConsultationSection() {
               <Input
                 id="organization"
                 name="organization"
-                label={form.labels.organization}
+                label={`${form.labels.organization} (${text.optional})`}
                 autoComplete="organization"
                 value={values.organization}
                 error={errors.organization}
@@ -104,7 +122,6 @@ export function ConsultationSection() {
               id="inquiryType"
               name="inquiryType"
               label={form.labels.inquiryType}
-              required
               options={inquiryOptions}
               value={values.inquiryType}
               error={errors.inquiryType}
@@ -120,13 +137,6 @@ export function ConsultationSection() {
               error={errors.message}
               onChange={handleChange}
             />
-            <Checkbox
-              id="consent"
-              label={contact.consentText}
-              checked={values.consent}
-              error={errors.consent}
-              onChange={handleConsent}
-            />
 
             <Button
               label={form.submit}
@@ -135,6 +145,35 @@ export function ConsultationSection() {
               brand="tech"
               fullWidth
             />
+
+            {prepared && links && (
+              <div className="form-note" role="status" aria-live="polite">
+                <p>{text.prepared}</p>
+                <ul className="form-links" role="list">
+                  <li>
+                    <a
+                      href={links.gmail}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Gmail
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={links.outlook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Outlook
+                    </a>
+                  </li>
+                  <li>
+                    <a href={links.mailto}>{text.defaultApp}</a>
+                  </li>
+                </ul>
+              </div>
+            )}
           </form>
         </div>
       </Section>
